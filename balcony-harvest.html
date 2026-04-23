@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Balcony Harvest — London Balcony Garden Assistant</title>
+<meta name="description" content="A free plant encyclopedia and growing calendar for London balcony gardeners. RHS-verified care guides for 28+ vegetables."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#FF3B30;--green:#34C759;--yellow:#FFD60A;--purple:#AF52DE;
+  --orange:#FF9500;--black:#0A0A0A;--white:#fff;
+  --gray:#F2F2F7;--gray2:#E5E5EA;--muted:#8E8E93;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--gray);color:var(--black);min-height:100vh}
+
+/* ── LAYOUT ── */
+.site-wrap{max-width:720px;margin:0 auto;padding:0 0 60px}
+
+/* ── HERO ── */
+.hero{background:var(--black);padding:32px 24px 28px;position:relative;overflow:hidden}
+.hero-deco{position:absolute;right:-40px;top:-40px;width:200px;height:200px;background:var(--green);opacity:0.12;border-radius:0;transform:rotate(20deg)}
+.hero-deco2{position:absolute;right:40px;top:20px;width:80px;height:80px;background:var(--yellow);opacity:0.15;transform:rotate(-10deg)}
+.hero-eyebrow{font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--green);margin-bottom:8px}
+.hero-title{font-size:clamp(32px,6vw,52px);font-weight:900;letter-spacing:-0.03em;text-transform:uppercase;color:var(--white);line-height:0.92;position:relative;z-index:1}
+.hero-title span{color:var(--green)}
+.hero-sub{font-size:13px;font-weight:500;color:rgba(255,255,255,0.5);margin-top:12px;line-height:1.5;max-width:380px}
+.hero-tags{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.hero-tag{font-size:8px;font-weight:900;letter-spacing:0.14em;text-transform:uppercase;padding:5px 10px;border:1.5px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.6)}
+
+/* ── SOURCE BAR ── */
+.source-bar{background:var(--white);border-bottom:2px solid var(--black);padding:9px 24px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.source-dot{width:7px;height:7px;background:var(--green);flex-shrink:0}
+.source-text{font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+.source-link{font-size:9px;font-weight:900;letter-spacing:0.06em;text-transform:uppercase;color:var(--green);text-decoration:none}
+.source-link:hover{text-decoration:underline}
+
+/* ── TABS ── */
+.tab-bar{background:var(--white);border-bottom:2px solid var(--black);padding:0 24px;display:flex;gap:0;position:sticky;top:0;z-index:50}
+.tab-btn{padding:14px 20px;font-size:11px;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);cursor:pointer;border:none;background:transparent;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all 0.12s;display:flex;align-items:center;gap:6px}
+.tab-btn.on{color:var(--black);border-bottom-color:var(--black)}
+.tab-btn:hover{color:var(--black)}
+
+/* ── SCREENS ── */
+.sc{display:none;padding:0}.sc.vis{display:block}
+
+/* ── MILESTONES ── */
+/* ── HYBRID DASHBOARD ── */
+.ms-section{padding:20px 24px 0}
+.ms-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.ms-star{font-size:13px;color:var(--purple)}
+.ms-title{font-size:10px;font-weight:900;letter-spacing:0.18em;text-transform:uppercase;color:var(--black)}
+.ms-empty{font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);background:var(--white);padding:14px 16px;border:2px solid var(--black)}
+
+/* §2 GROWTH TRACKER */
+.gt-section{padding:0 24px}
+.gt-card{background:var(--white);border:1.5px solid var(--black);padding:13px 14px;margin-bottom:8px;cursor:pointer;transition:background 0.1s}
+.gt-card:hover{background:var(--gray)}
+.gt-header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.gt-ico{width:34px;height:34px;flex-shrink:0}
+.gt-name{font-size:11px;font-weight:900;letter-spacing:0.06em;text-transform:uppercase;color:var(--black)}
+.gt-meta{font-size:8px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.gt-stage-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
+.gt-stage{font-size:8px;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;color:var(--black)}
+.gt-next{font-size:8px;font-weight:700;color:var(--muted);letter-spacing:0.04em}
+.gt-next span{font-weight:900;color:var(--black)}
+.gt-track{height:7px;background:var(--gray2);border-radius:4px;position:relative;overflow:hidden}
+.gt-fill{height:100%;border-radius:4px;position:absolute;top:0;left:0;transition:width 0.8s cubic-bezier(.4,0,.2,1)}
+/* stage dots on track */
+.gt-dot{position:absolute;top:50%;width:5px;height:5px;border-radius:50%;background:white;border:1.5px solid rgba(0,0,0,0.25);transform:translate(-50%,-50%)}
+
+/* §3 TASK REMINDER CARDS */
+.task-section{padding:16px 24px 0}
+.task-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.task-title-row{display:flex;align-items:center;gap:7px}
+.task-lbl-ico{font-size:13px;color:var(--green)}
+.task-title{font-size:10px;font-weight:900;letter-spacing:0.18em;text-transform:uppercase}
+.task-count{font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted)}
+/* Horizontal scroll carousel */
+.task-carousel{display:flex;gap:10px;overflow-x:auto;padding-bottom:12px;scrollbar-width:none}
+.task-carousel::-webkit-scrollbar{display:none}
+.task-card{flex-shrink:0;width:130px;border:2px solid var(--black);background:var(--white);padding:12px 12px 10px;cursor:pointer;transition:all 0.15s;user-select:none;position:relative}
+.task-card:hover{background:var(--gray)}
+.task-card:active{transform:scale(0.97)}
+.task-card.done{background:var(--gray);border-color:var(--gray2);opacity:0.55}
+.task-card-ico{font-size:20px;margin-bottom:6px;display:block}
+.task-card-action{font-size:10px;font-weight:900;letter-spacing:0.06em;text-transform:uppercase;color:var(--black);line-height:1.3}
+.task-card-plant{font-size:9px;font-weight:500;color:var(--muted);margin-top:3px}
+.task-card-badge{position:absolute;top:8px;right:8px;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:900}
+.badge-water{background:#E3F2FF;color:#007AFF}
+.badge-feed{background:#E8F5E9;color:#2E7D32}
+.task-done-wrap{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;background:var(--gray);border:2px solid var(--black)}
+.task-done-msg{font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted)}
+
+/* ── CALENDAR ── */
+.cal-wrap{padding:18px 24px}
+.cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.cal-nav-btn{background:var(--white);border:2px solid var(--black);font-size:18px;font-weight:900;color:var(--black);cursor:pointer;padding:4px 12px;transition:background 0.1s}
+.cal-nav-btn:hover{background:var(--black);color:var(--white)}
+.cal-month{font-size:22px;font-weight:900;letter-spacing:-0.02em}
+.dow-row{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:3px}
+.dow{text-align:center;font-size:8px;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);padding:3px 0}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.cc{aspect-ratio:1;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;padding:6px 7px;border:1.5px solid var(--gray2);background:var(--white);font-size:11px;font-weight:500;cursor:pointer;transition:all 0.1s;user-select:none}
+.cc:hover{border-color:var(--black);background:var(--gray)}
+.cc.empty{border:none;background:transparent;cursor:default}
+.cc.today{border:2px solid var(--purple);font-weight:700}
+.cc.has-plant{border-color:var(--green);border-width:2px}
+.cc-plants{display:flex;flex-wrap:wrap;gap:1px;margin-top:3px}
+.cc-dot{width:14px;height:14px;flex-shrink:0}
+
+/* ── MODAL (sow picker) ── */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(10,10,10,0.6);z-index:200;align-items:flex-end;justify-content:center}
+.modal-bg.vis{display:flex}
+.modal{background:var(--white);width:100%;max-width:720px;border-top:3px solid var(--black);padding:20px 24px 32px;max-height:90vh;overflow-y:auto}
+.modal-drag{width:36px;height:3px;background:var(--black);margin:0 auto 16px}
+.modal-title{font-size:15px;font-weight:900;text-transform:uppercase;letter-spacing:0.04em}
+.modal-sub{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-top:3px;margin-bottom:16px}
+.picker-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:16px}
+@media(min-width:480px){.picker-grid{grid-template-columns:repeat(3,1fr)}}
+.pick-opt{display:flex;align-items:center;gap:10px;padding:12px;border:2px solid var(--black);cursor:pointer;background:var(--white);transition:background 0.1s}
+.pick-opt:hover{background:var(--gray)}
+.pick-opt.sel{background:var(--yellow)}
+.pick-svg{width:36px;height:36px;flex-shrink:0}
+.pick-name{font-size:10px;font-weight:900;letter-spacing:0.08em;text-transform:uppercase}
+.pick-sub{font-size:9px;font-weight:500;color:var(--muted);margin-top:1px}
+.modal-btn{width:100%;background:var(--black);color:var(--white);border:none;padding:14px;font-size:11px;font-weight:900;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity 0.1s}
+.modal-btn:disabled{opacity:0.3;cursor:default}
+.modal-close-btn{float:right;background:none;border:none;font-size:22px;font-weight:900;cursor:pointer;color:var(--muted);line-height:1;padding:0}
+/* ── MODAL SEARCH ── */
+.modal-search-wrap{display:flex;gap:8px;margin-bottom:14px}
+.modal-search-wrap input{flex:1;border:2px solid var(--black);outline:none;padding:10px 13px;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:var(--black);background:var(--white)}
+.modal-search-wrap input:focus{border-color:var(--green)}
+.modal-search-wrap input::placeholder{color:var(--muted);font-weight:400}
+.modal-search-add{background:var(--green);color:var(--white);border:none;padding:10px 14px;font-size:10px;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;display:none}
+.modal-search-add.vis{display:block}
+.modal-search-add:hover{opacity:0.85}
+.modal-no-results{font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);background:var(--gray);padding:12px 14px;border:2px solid var(--black);display:none;margin-bottom:12px}
+.modal-no-results.vis{display:block}
+.modal-added-pill{display:inline-flex;align-items:center;gap:5px;font-size:9px;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;background:var(--green);color:var(--white);padding:4px 10px;margin-bottom:12px}
+
+/* ── ENCYCLOPEDIA ── */
+.enc-body{padding:20px 24px}
+.enc-top{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px}
+.enc-heading{font-size:20px;font-weight:900;text-transform:uppercase;letter-spacing:-0.01em}
+.enc-count{font-size:10px;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)}
+.enc-search-wrap{border:2px dashed var(--green);padding:12px 14px;margin-bottom:14px;background:var(--white)}
+.enc-row{display:flex;gap:8px}
+.enc-row input{flex:1;border:2px solid var(--black);outline:none;padding:10px 13px;font-family:'Inter',sans-serif;font-size:14px;font-weight:500;color:var(--black);background:var(--white)}
+.enc-row input:focus{border-color:var(--green)}
+.enc-row input::placeholder{color:var(--muted);font-weight:400}
+.enc-add{background:var(--black);color:var(--white);border:none;padding:10px 18px;font-size:11px;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;transition:opacity 0.1s}
+.enc-add:hover{opacity:0.8}
+.enc-hint{font-size:10px;font-weight:500;color:var(--muted);margin-top:7px}
+
+.filter-strip{display:flex;gap:5px;margin-bottom:14px;flex-wrap:wrap}
+.fchip{font-size:9px;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;padding:6px 12px;border:2px solid var(--black);background:var(--white);cursor:pointer;transition:all 0.1s}
+.fchip.on{background:var(--black);color:var(--white)}
+.fchip:hover:not(.on){background:var(--gray)}
+
+/* ── CONFIRM CARD ── */
+.confirm-card{border:2px solid var(--green);margin-bottom:14px;overflow:hidden;background:var(--white)}
+.confirm-hd{background:var(--green);padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.confirm-hd-txt{font-size:10px;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;color:var(--white)}
+.confirm-hd-sub{font-size:9px;font-weight:700;color:rgba(255,255,255,0.7);white-space:nowrap}
+.confirm-body{padding:14px}
+.confirm-plant-row{display:flex;align-items:center;gap:12px;margin-bottom:12px;padding-bottom:12px;border-bottom:2px solid var(--black)}
+.confirm-name{font-size:16px;font-weight:900;letter-spacing:0.04em;text-transform:uppercase}
+.confirm-sub{font-size:10px;color:var(--muted);margin-top:3px}
+.confirm-preview-row{display:flex;gap:8px;margin-bottom:5px;font-size:11px;line-height:1.45}
+.confirm-label{font-weight:900;text-transform:uppercase;letter-spacing:0.06em;width:88px;flex-shrink:0;font-size:10px}
+.confirm-val{color:#444}
+.confirm-btns{display:flex;gap:8px;margin-top:12px}
+.btn-yes{flex:1;background:var(--black);color:var(--white);border:none;padding:12px;font-size:10px;font-weight:900;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity 0.1s}
+.btn-yes:hover{opacity:0.8}
+.btn-no{flex:1;background:var(--white);color:var(--black);border:2px solid var(--black);padding:12px;font-size:10px;font-weight:900;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif}
+.btn-no:hover{background:var(--gray)}
+
+/* ── PLANT BLOCKS ── */
+.plant-block{border:2px solid var(--black);margin-bottom:10px;overflow:hidden;background:var(--white)}
+.plant-hd{display:flex;align-items:center;justify-content:space-between;padding:13px 14px;cursor:pointer;background:var(--white);transition:background 0.1s}
+.plant-hd:hover{background:var(--gray)}
+.ph-left{display:flex;align-items:center;gap:12px}
+.ph-ico{width:46px;height:46px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.ph-name{font-size:12px;font-weight:900;letter-spacing:0.06em;text-transform:uppercase}
+.ph-sub{font-size:9px;font-weight:500;color:var(--muted);margin-top:2px}
+.ph-tags{display:flex;gap:4px;margin-top:4px;flex-wrap:wrap}
+.ph-tag{font-size:7px;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;padding:2px 7px}
+.ph-chev{font-size:12px;font-weight:900;color:var(--muted);flex-shrink:0}
+.sec-block{border-top:2px solid var(--black)}
+.sec-hd{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;cursor:pointer;background:var(--gray);transition:background 0.1s}
+.sec-hd:hover{background:var(--gray2)}
+.sec-title{font-size:10px;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;display:flex;align-items:center;gap:6px}
+.sec-chev{font-size:10px;font-weight:900;color:var(--muted)}
+.sec-body{padding:14px;background:var(--white)}
+.care-row{margin-bottom:10px}
+.care-row:last-child{margin-bottom:0}
+.care-label{font-size:10px;font-weight:900;letter-spacing:0.06em;text-transform:uppercase}
+.care-val{font-size:12px;color:#444;margin-top:3px;line-height:1.55}
+.src-note{font-size:9px;font-weight:700;color:var(--green);margin-top:8px;letter-spacing:0.04em}
+
+/* ── FOOTER ── */
+.footer{background:var(--black);padding:24px;margin-top:40px}
+.footer-title{font-size:13px;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;color:var(--white);margin-bottom:4px}
+.footer-sub{font-size:10px;font-weight:500;color:rgba(255,255,255,0.4);line-height:1.5}
+.footer-links{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
+.footer-link{font-size:9px;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);text-decoration:none}
+.footer-link:hover{text-decoration:underline}
+
+/* ── RESPONSIVE ── */
+@media(max-width:480px){
+  .hero{padding:24px 16px 20px}
+  .cal-wrap,.enc-body,.ms-section{padding-left:16px;padding-right:16px}
+  .tab-btn{padding:12px 14px;font-size:10px}
+}
+</style>
+</head>
+<body>
+
+<div class="site-wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-deco"></div>
+    <div class="hero-deco2"></div>
+    <div class="hero-eyebrow">London Balcony Gardening</div>
+    <div class="hero-title">Balcony<br><span>Harvest.</span></div>
+    <div class="hero-sub">A free growing calendar and plant encyclopedia built for London balconies. RHS-verified care guides for 28+ vegetables.</div>
+    <div class="hero-tags">
+      <span class="hero-tag">🌱 28 Plants</span>
+      <span class="hero-tag">📅 Smart Calendar</span>
+      <span class="hero-tag">✦ RHS Verified</span>
+      <span class="hero-tag">🇬🇧 London Climate</span>
+    </div>
+  </div>
+
+  <!-- SOURCE BAR -->
+  <div class="source-bar">
+    <div class="source-dot"></div>
+    <span class="source-text">Data sourced from</span>
+    <a class="source-link" href="https://www.rhs.org.uk/advice/grow-your-own" target="_blank" rel="noopener">RHS Grow Your Own</a>
+    <span class="source-text">&amp;</span>
+    <a class="source-link" href="https://www.gardenersworld.com" target="_blank" rel="noopener">Gardeners' World</a>
+    <span class="source-text">· London / UK conditions</span>
+  </div>
+
+  <!-- TAB BAR -->
+  <div class="tab-bar">
+    <button class="tab-btn on" id="tab-cal" onclick="showTab('cal')">📅 Calendar</button>
+    <button class="tab-btn" id="tab-enc" onclick="showTab('enc')">📖 Encyclopedia</button>
+  </div>
+
+  <!-- ══ CALENDAR SCREEN ══ -->
+  <div id="s-cal" class="sc vis">
+
+    <!-- §2 GROWTH TRACKER — long-term progress -->
+    <div class="ms-section">
+      <div class="ms-head">
+        <span class="ms-star">✦</span>
+        <span class="ms-title">Growth Tracker</span>
+      </div>
+    </div>
+    <div class="gt-section">
+      <div id="gt-list">
+        <div class="ms-empty">Tap a calendar date to sow a plant — your growth tracks will appear here.</div>
+      </div>
+    </div>
+
+    <!-- §3 TASK REMINDER CARDS — daily maintenance -->
+    <div class="task-section">
+      <div class="task-head">
+        <div class="task-title-row">
+          <span class="task-lbl-ico">✦</span>
+          <span class="task-title">Today's Tasks</span>
+        </div>
+        <span class="task-count" id="task-count"></span>
+      </div>
+      <div id="task-zone">
+        <div class="ms-empty">No tasks yet — add a plant to get daily reminders.</div>
+      </div>
+    </div>
+
+    <!-- Calendar -->
+    <div class="cal-wrap">
+      <div class="cal-nav">
+        <button class="cal-nav-btn" onclick="changeMonth(-1)" aria-label="Previous month">‹</button>
+        <span class="cal-month" id="cal-title">April 2026</span>
+        <button class="cal-nav-btn" onclick="changeMonth(1)" aria-label="Next month">›</button>
+      </div>
+      <div class="dow-row">
+        <div class="dow">Sun</div><div class="dow">Mon</div><div class="dow">Tue</div>
+        <div class="dow">Wed</div><div class="dow">Thu</div><div class="dow">Fri</div><div class="dow">Sat</div>
+      </div>
+      <div class="cal-grid" id="cal-grid"></div>
+    </div>
+
+  </div><!-- /calendar -->
+
+  <!-- ══ ENCYCLOPEDIA SCREEN ══ -->
+  <div id="s-enc" class="sc">
+    <div class="enc-body">
+      <div class="enc-top">
+        <div class="enc-heading">Plant Encyclopedia</div>
+        <div class="enc-count" id="enc-count">16 plants · RHS verified</div>
+      </div>
+
+      <div class="enc-search-wrap">
+        <div class="enc-row">
+          <input id="enc-input" placeholder="Search or add a vegetable..." autocomplete="off"
+            oninput="filterEnc(this.value)"
+            onkeydown="if(event.key==='Enter')tryAdd()"/>
+          <button class="enc-add" onclick="tryAdd()">+ Add</button>
+        </div>
+        <div class="enc-hint">Type to search · Press Enter or + Add — works for 28+ vegetables and common aliases</div>
+      </div>
+
+      <div id="confirm-zone"></div>
+      <div class="filter-strip" id="filter-strip"></div>
+      <div id="plant-list"></div>
+    </div>
+  </div><!-- /encyclopedia -->
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-title">Balcony Harvest</div>
+    <div class="footer-sub">A free London balcony gardening tool. Care data sourced from the RHS and Gardeners' World. For personal use — always cross-check advice for your specific variety and microclimate.</div>
+    <div class="footer-links">
+      <a class="footer-link" href="https://www.rhs.org.uk/advice/grow-your-own" target="_blank" rel="noopener">RHS Grow Your Own →</a>
+      <a class="footer-link" href="https://www.gardenersworld.com/how-to/grow-plants/vegetables/" target="_blank" rel="noopener">Gardeners' World →</a>
+    </div>
+  </div>
+
+</div><!-- /site-wrap -->
+
+<!-- SOW PICKER MODAL -->
+<div class="modal-bg" id="modal-bg" onclick="closeBg(event)" role="dialog" aria-modal="true" aria-label="Choose a plant to sow">
+  <div class="modal">
+    <div class="modal-drag"></div>
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:4px">
+      <div>
+        <div class="modal-title" id="modal-title">Choose a plant</div>
+        <div class="modal-sub">Select what you sowed on this date</div>
+      </div>
+      <button class="modal-close-btn" onclick="closeModal()" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-search-wrap">
+      <input id="modal-search" placeholder="Search plants or type a new one..." autocomplete="off"
+        oninput="filterPickerGrid(this.value)"
+        onkeydown="if(event.key==='Enter')modalAddNew()"/>
+      <button class="modal-search-add" id="modal-add-btn" onclick="modalAddNew()">+ Add</button>
+    </div>
+    <div class="modal-no-results" id="modal-no-results">No match — press Enter or tap + Add to sow this plant</div>
+    <div id="modal-added-msg"></div>
+    <div class="picker-grid" id="picker-grid"></div>
+    <button class="modal-btn" id="modal-btn" onclick="confirmSow()" disabled>Confirm Sowing →</button>
+  </div>
+</div>
+
+<script>
+// ════════════════════════════════════════════════════════
+//  SVG SHAPES
+// ════════════════════════════════════════════════════════
+const SVG={
+  tomato:`<circle cx="50" cy="57" r="31" fill="#FF3B30"/><rect x="46" y="18" width="8" height="18" rx="2" fill="#34C759"/><rect x="36" y="22" width="6" height="14" rx="2" fill="#34C759" transform="rotate(-20 39 29)"/><rect x="58" y="22" width="6" height="14" rx="2" fill="#34C759" transform="rotate(20 61 29)"/><ellipse cx="41" cy="52" rx="7" ry="5" fill="#FF6259" opacity="0.3"/>`,
+  pepper:`<rect x="44" y="12" width="12" height="14" rx="3" fill="#2E7D32"/><path d="M32 42 Q50 8 68 42 Q80 65 50 88 Q20 65 32 42Z" fill="#34C759"/><ellipse cx="42" cy="52" rx="6" ry="10" fill="#57D87A" opacity="0.4"/>`,
+  eggplant:`<rect x="42" y="14" width="16" height="18" rx="4" fill="#34C759"/><ellipse cx="50" cy="63" rx="26" ry="31" fill="#AF52DE"/><ellipse cx="40" cy="55" rx="8" ry="12" fill="#C77DFF" opacity="0.3"/>`,
+  carrot:`<polygon points="50,28 68,82 32,82" fill="#FF9500"/><rect x="45" y="8" width="6" height="22" rx="2" fill="#34C759" transform="rotate(-10 48 19)"/><rect x="56" y="12" width="6" height="20" rx="2" fill="#34C759" transform="rotate(12 59 22)"/><rect x="34" y="12" width="6" height="20" rx="2" fill="#34C759" transform="rotate(-20 37 22)"/><ellipse cx="44" cy="52" rx="4" ry="14" fill="#FFB340" opacity="0.35"/>`,
+  courgette:`<ellipse cx="50" cy="58" rx="18" ry="30" fill="#34C759"/><rect x="43" y="16" width="14" height="16" rx="4" fill="#2E7D32"/><ellipse cx="44" cy="50" rx="5" ry="16" fill="#57D87A" opacity="0.35"/><rect x="46" y="44" width="8" height="2" rx="1" fill="#2E7D32" opacity="0.2"/><rect x="46" y="56" width="8" height="2" rx="1" fill="#2E7D32" opacity="0.2"/>`,
+  lettuce:`<ellipse cx="50" cy="60" rx="34" ry="24" fill="#34C759"/><ellipse cx="35" cy="52" rx="14" ry="18" fill="#57D87A"/><ellipse cx="65" cy="52" rx="14" ry="18" fill="#57D87A"/><ellipse cx="50" cy="44" rx="12" ry="16" fill="#A8E6B0"/><ellipse cx="50" cy="58" rx="8" ry="10" fill="#C8F5CE"/>`,
+  strawberry:`<path d="M50 82 Q22 62 22 44 Q22 26 50 26 Q78 26 78 44 Q78 62 50 82Z" fill="#FF3B30"/><rect x="42" y="12" width="16" height="16" rx="3" fill="#34C759"/><rect x="36" y="16" width="10" height="12" rx="3" fill="#34C759" transform="rotate(-18 41 22)"/><rect x="54" y="16" width="10" height="12" rx="3" fill="#34C759" transform="rotate(18 59 22)"/><circle cx="40" cy="50" r="2.5" fill="#FF6259" opacity="0.5"/><circle cx="58" cy="44" r="2.5" fill="#FF6259" opacity="0.5"/><circle cx="60" cy="60" r="2.5" fill="#FF6259" opacity="0.5"/>`,
+  onion:`<ellipse cx="50" cy="65" rx="26" ry="24" fill="#FFD60A"/><path d="M38 44 Q50 14 62 44" stroke="#FFD60A" stroke-width="10" fill="none" stroke-linecap="round"/><rect x="46" y="10" width="8" height="18" rx="3" fill="#34C759"/><ellipse cx="40" cy="60" rx="7" ry="12" fill="#FFE566" opacity="0.4"/>`,
+  cucumber:`<ellipse cx="50" cy="54" rx="16" ry="34" fill="#34C759"/><rect x="43" y="14" width="14" height="12" rx="3" fill="#2E7D32"/><rect x="46" y="38" width="8" height="2" rx="1" fill="#2E7D32" opacity="0.25"/><rect x="46" y="52" width="8" height="2" rx="1" fill="#2E7D32" opacity="0.25"/><rect x="46" y="66" width="8" height="2" rx="1" fill="#2E7D32" opacity="0.25"/>`,
+  radish:`<ellipse cx="50" cy="58" rx="22" ry="26" fill="#FF3B30"/><rect x="46" y="16" width="8" height="20" rx="2" fill="#34C759"/><rect x="38" y="20" width="6" height="16" rx="2" fill="#34C759" transform="rotate(-15 41 28)"/><rect x="56" y="20" width="6" height="16" rx="2" fill="#34C759" transform="rotate(15 59 28)"/><ellipse cx="42" cy="52" rx="6" ry="8" fill="#FF6259" opacity="0.3"/>`,
+  pea:`<ellipse cx="50" cy="58" rx="30" ry="20" fill="#34C759"/><circle cx="32" cy="58" r="8" fill="#57D87A"/><circle cx="50" cy="56" r="8" fill="#57D87A"/><circle cx="68" cy="58" r="8" fill="#57D87A"/><path d="M22 42 Q50 20 78 42" stroke="#2E7D32" stroke-width="4" fill="none" stroke-linecap="round"/>`,
+  spinach:`<ellipse cx="50" cy="55" rx="28" ry="22" fill="#34C759"/><ellipse cx="34" cy="48" rx="14" ry="10" fill="#57D87A" transform="rotate(-20 34 48)"/><ellipse cx="66" cy="48" rx="14" ry="10" fill="#57D87A" transform="rotate(20 66 48)"/><ellipse cx="50" cy="38" rx="12" ry="9" fill="#A8E6B0"/><rect x="48" y="55" width="4" height="22" rx="2" fill="#2E7D32"/>`,
+  beetroot:`<ellipse cx="50" cy="62" rx="26" ry="26" fill="#AF52DE"/><rect x="46" y="16" width="8" height="24" rx="2" fill="#34C759"/><rect x="38" y="22" width="6" height="18" rx="2" fill="#34C759" transform="rotate(-12 41 31)"/><rect x="56" y="22" width="6" height="18" rx="2" fill="#34C759" transform="rotate(12 59 31)"/><ellipse cx="42" cy="56" rx="7" ry="10" fill="#C77DFF" opacity="0.3"/>`,
+  garlic:`<ellipse cx="50" cy="60" rx="22" ry="26" fill="#F5F0E8"/><ellipse cx="40" cy="55" rx="11" ry="18" fill="#EDE8DC"/><ellipse cx="60" cy="55" rx="11" ry="18" fill="#EDE8DC"/><rect x="46" y="12" width="8" height="20" rx="3" fill="#34C759"/><ellipse cx="50" cy="60" rx="6" ry="10" fill="#C8C0A8" opacity="0.35"/>`,
+  sweetcorn:`<rect x="38" y="28" width="24" height="52" rx="6" fill="#FFD60A"/><rect x="34" y="28" width="8" height="42" rx="4" fill="#34C759" transform="rotate(-8 38 49)"/><rect x="58" y="28" width="8" height="42" rx="4" fill="#34C759" transform="rotate(8 62 49)"/><rect x="44" y="12" width="6" height="20" rx="2" fill="#34C759"/><rect x="42" y="40" width="16" height="2" rx="1" fill="#FF9500" opacity="0.35"/><rect x="42" y="52" width="16" height="2" rx="1" fill="#FF9500" opacity="0.35"/><rect x="42" y="64" width="16" height="2" rx="1" fill="#FF9500" opacity="0.35"/>`,
+  kale:`<ellipse cx="50" cy="56" rx="32" ry="20" fill="#2E7D32"/><ellipse cx="28" cy="50" rx="14" ry="10" fill="#34C759" transform="rotate(-25 28 50)"/><ellipse cx="72" cy="50" rx="14" ry="10" fill="#34C759" transform="rotate(25 72 50)"/><ellipse cx="50" cy="36" rx="14" ry="10" fill="#57D87A"/><rect x="47" y="56" width="6" height="24" rx="2" fill="#2E7D32"/>`,
+  herb:`<ellipse cx="50" cy="55" rx="20" ry="28" fill="#34C759"/><ellipse cx="34" cy="44" rx="12" ry="16" fill="#57D87A" transform="rotate(-15 34 44)"/><ellipse cx="66" cy="44" rx="12" ry="16" fill="#57D87A" transform="rotate(15 66 44)"/><rect x="47" y="62" width="6" height="20" rx="2" fill="#2E7D32"/>`,
+  generic:`<ellipse cx="50" cy="58" rx="28" ry="28" fill="#34C759"/><ellipse cx="50" cy="26" rx="10" ry="14" fill="#2E7D32"/><ellipse cx="40" cy="50" rx="8" ry="12" fill="#57D87A" opacity="0.45"/>`,
+};
+
+// ════════════════════════════════════════════════════════
+//  PLANT DATABASE
+// ════════════════════════════════════════════════════════
+const CATS={fruit:'Fruit',leafy:'Leafy',root:'Root',pod:'Pod',bulb:'Bulb',brassica:'Brassica',herb:'Herb'};
+const CAT_COLORS={
+  fruit:['#FFEEEE','#FF3B30'],leafy:['#E8F5E9','#2E7D32'],root:['#FFF3E0','#FF9500'],
+  pod:['#F3E5F5','#AF52DE'],bulb:['#FFFDE7','#BA7A00'],brassica:['#E3F2FD','#007AFF'],herb:['#F1F8E9','#558B2F']
+};
+
+const KNOWN={
+  tomato:{name:'Tomato',sub:'Cherry · Balcony',cat:'fruit',svg:'tomato',sprout:10,water:1,harvest:60,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/tomatoes',r:[['Sowing Time','Late Feb to mid-Mar indoors; late Mar–Apr for outdoor crops'],['Sowing Temp','18–22°C — heated propagator or warm windowsill (RHS)'],['Pot Size','30–45cm wide minimum; prevents root stress and splitting'],['Transplant Trigger','Plant out once nights are reliably above 16°C']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','6–8 hrs direct sun; south-facing sheltered spot; rotate pot weekly'],['Watering','Daily in warm weather; twice daily in peak summer for containers'],['Feeding','High-potash liquid feed every 7 days once first truss sets'],['Side-shoots','Pinch out weekly for cordon varieties']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Pruning','Remove suckers growing between stem and branch'],['Pollination','Tap flowering trusses daily around midday to release pollen'],['Maturity','Fruit yields to gentle pressure; harvest Jul–Oct']]},{t:'🤝 Companions',src:'gardenuk.co.uk/companion-planting',r:[['Plant with','Basil (repels aphids), Marigold (deters whitefly), Borage (attracts pollinators)'],['Avoid','Fennel (allelopathic), Brassicas (compete for nutrients), Potatoes (shared blight)']]}]},
+  pepper:{name:'Pepper',sub:'Sweet Bell · Green',cat:'fruit',svg:'pepper',sprout:14,water:2,harvest:90,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/peppers',r:[['Sowing Time','Feb to early Mar indoors — peppers are slow, sow early'],['Sowing Temp','18–21°C in a heated propagator'],['Pot Size','25cm+ deep; pot on into 2–3 litre pots by May']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Full sun, 6+ hrs'],['Watering','Keep evenly moist; water at base, avoid leaves'],['Feeding','High-potash weekly once flowering begins']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['First flowers','Pinch off to strengthen the plant structure'],['Support','Stake when fruits develop — branches can snap']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Basil (repels aphids), Carrots'],['Avoid','Fennel (inhibits growth of most vegetables)']]}]},
+  eggplant:{name:'Eggplant',sub:'Aubergine · Classic Purple',cat:'fruit',svg:'eggplant',sprout:14,water:2,harvest:85,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/aubergines',r:[['Sowing Time','Feb to early Mar indoors — needs long warm season'],['Sowing Temp','21–27°C; requires heated propagator'],['Pot Size','30cm+ deep; heat-loving, needs rich soil']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Full sun, 8 hrs — more demanding than tomatoes'],['Watering','Consistent moisture; never allow to dry out or waterlog'],['Feeding','Balanced feed until flowering, then high-potash weekly']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Staking','Stake plants when 30cm tall'],['Fruit limit','Restrict to 4–5 fruits per plant for best UK size']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Basil (repels aphids), Tarragon'],['Avoid','Fennel, Brassicas (compete for nutrients)']]}]},
+  courgette:{name:'Courgette',sub:'Green Bush · Zucchini',cat:'fruit',svg:'courgette',sprout:5,water:1,harvest:50,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/courgettes',r:[['Sowing Time','Sow indoors mid–late spring; plant out after last frost'],['Sowing Temp','18–21°C; germination usually 5–7 days'],['Pot Size','Large container; compact/bush varieties best for balconies']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Warm, sunny, sheltered position'],['Watering','Water regularly and deeply; courgettes are thirsty'],['Harvesting','Pick every 2–3 days to keep plant producing; 3–4 fruits/week at peak']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Pollination','Hand-pollinate if few insects — transfer pollen with a brush'],['Marrow risk','Do not leave fruits — they quickly become marrows']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Nasturtiums (attract aphids away), Marigolds (deter pests)'],['Avoid','Potatoes (compete for space and nutrients)']]}]},
+  cucumber:{name:'Cucumber',sub:'Ridge · Outdoor',cat:'fruit',svg:'cucumber',sprout:6,water:1,harvest:55,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/cucumbers',r:[['Sowing Time','Sow indoors mid–late spring; plant out in early summer'],['Sowing Temp','20–25°C in a heated propagator'],['Pot Size','30cm+ deep; train vertically to save balcony space'],['Varieties','Choose outdoor/ridge varieties for balconies']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Full sun, sheltered from wind'],['Watering','Daily in warm weather — high moisture needs'],['Feeding','General liquid feed every 10–14 days; switch to high-potash when flowering']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Training','Pinch out growing tip above 6–8 leaves; tie in to canes'],['Harvest','Cut at 15–20cm; pick regularly to maintain cropping']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Beans, Dill, Sunflowers (provide shade)'],['Avoid','Sage, Potatoes (inhibit cucumber growth)']]}]},
+  strawberry:{name:'Strawberry',sub:'Everbearing · Alpine',cat:'fruit',svg:'strawberry',sprout:14,water:1,harvest:70,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/fruit/strawberries',r:[['Planting Time','Plant runners late summer/autumn; start seeds indoors Feb'],['Pot Size','20cm+ deep; hanging baskets and window boxes work well'],['Mulch','Straw under fruits prevents soil splash and slug damage']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','6+ hrs sun — essential for fruit sweetness'],['Watering','Consistently moist; avoid wetting crown to prevent rot'],['Feeding','High-potash liquid feed weekly once plants begin flowering']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Runners','Remove runners promptly to direct energy to fruiting'],['After harvest','Cut back old foliage after fruiting']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Borage (attracts pollinators), Thyme, Lettuce'],['Avoid','Brassicas (inhibit growth), Fennel (allelopathic)']]}]},
+  sweetcorn:{name:'Sweetcorn',sub:'F1 Sweet · Cob',cat:'fruit',svg:'sweetcorn',sprout:8,water:2,harvest:85,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/sweetcorn',r:[['Sowing Time','Sow indoors mid to late spring (Apr–May); germinate at 18–21°C'],['Plant out','After last frost (mid-May London); harden off 1–2 weeks first'],['Pot Size','40cm+ container; plant in a block not a row for pollination']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Full sun, sheltered'],['Watering','Generous, especially once tassels form at the top'],['Harvest','Cobs ripe from Aug; milky juice when pressing a kernel = ready']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Pollination','Block planting essential — wind transfers pollen from tassels to silks'],['Eat immediately','Sugars convert to starch within hours of picking']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Beans, Squash — classic Three Sisters combination'],['Avoid','Tomatoes, Brassicas (heavy competition)']]}]},
+  lettuce:{name:'Lettuce',sub:'Butterhead · Cut-and-Come-Again',cat:'leafy',svg:'lettuce',sprout:4,water:1,harvest:35,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/lettuce',r:[['Sowing Time','Mar–Sep outdoors; succession sow every 2–3 weeks (RHS)'],['Sowing Temp','10–20°C — germination fails above 25°C'],['Pot Depth','15–20cm; lettuce roots are shallow']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Full sun in spring/autumn; partial shade in summer to prevent bolting'],['Watering','Consistently moist — drought causes bitterness and bolting']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Harvesting','Pick outer leaves first (cut-and-come-again); plant keeps producing'],['Bolting','Remove flower heads immediately to delay bitterness']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Radish (fast-growing gap-filler), Carrots, Chives (deter aphids)'],['Avoid','Celery, Parsley (inhibit lettuce growth)']]}]},
+  spinach:{name:'Spinach',sub:'Baby Leaf · Perpetual',cat:'leafy',svg:'spinach',sprout:5,water:1,harvest:30,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/spinach',r:[['Sowing Time','Mar–May and Aug–Sep; succession sow every 3 weeks (RHS)'],['Sowing Temp','5–18°C — does not germinate well above 20°C'],['Pot Depth','15cm minimum; shallow roots tolerate small containers']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Partial shade tolerated in summer — helps prevent bolting'],['Watering','Consistently moist — dry spells cause rapid bolting']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Bolting','Shade in hot spells; remove flower spikes to delay bitterness'],['Harvesting','Pick outer leaves regularly from baby plants']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Strawberries (good use of space), Peas (fix nitrogen)'],['Avoid','Brassicas (attract same pests)']]}]},
+  kale:{name:'Kale',sub:'Curly · Dwarf',cat:'brassica',svg:'kale',sprout:6,water:2,harvest:60,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/kale',r:[['Sowing Time','Apr–Jun for autumn/winter harvest; some varieties Aug for spring'],['Sowing Temp','10–18°C; kale is hardy and tolerates frost once established'],['Pot Depth','30cm+ deep; kale has a substantial root system']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Full sun to partial shade — very adaptable'],['Watering','Keep moist; deep watering encourages deep roots'],['Feeding','High-nitrogen feed monthly to encourage leafy growth']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Harvesting','Pick outer leaves; leave crown intact to keep producing'],['Pest watch','Net against cabbage white butterflies — main balcony risk']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Dill (attracts predatory wasps), Mint (deters cabbage moths), Onions'],['Avoid','Tomatoes, other brassicas in same pot (disease build-up)']]}]},
+  carrot:{name:'Carrot',sub:'Nantes · Amsterdam Short',cat:'root',svg:'carrot',sprout:14,water:2,harvest:70,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/containers',r:[['Sowing Time','Feb onwards in containers (RHS recommends Nantes/Amsterdam for pots)'],['Sowing Temp','7–24°C; best 18–21°C. Can be slow: 10–21 days'],['Pot Depth','30cm+ with loose, stone-free compost'],['Cover','Fleece from April to exclude carrot fly — key London tip (RHS)']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','6 hrs sun; tolerates partial shade'],['Watering','Consistent moisture prevents forking and splitting'],['Thinning','8cm apart once 3cm tall (RHS containers guide); thin in evenings']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Carrot fly','Cover with fine mesh or fleece — main pest. Never thin in daytime'],['Harvest','Lift gently when shoulders visible at soil surface (June onwards)']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Onions (confuse carrot fly), Rosemary, Chives, Leeks'],['Avoid','Dill (reduces carrot growth when mature), Parsnip (same pest family)']]}]},
+  radish:{name:'Radish',sub:'Cherry Belle · Salad',cat:'root',svg:'radish',sprout:5,water:1,harvest:28,secs:[{t:'🌱 Planting Setup',src:'howto-grow.co.uk/vegetables/radishes',r:[['Sowing Time','Mar–Sep outdoors; succession sow every 2 weeks for continuous supply'],['Germination','4–7 days in spring warmth'],['Pot Depth','15cm is sufficient — radishes have shallow roots'],['Spacing','Sow 1.5cm deep; thin to 3–4cm apart once seedlings emerge']]},{t:'💧 Daily Care',src:'thrive.org.uk',r:[['Sunlight','Full sun for fastest growth; light shade in midsummer to prevent bolting'],['Watering','Evenly moist — dry soil causes woody, fiery roots'],['Feeding','Not needed — radishes grow too quickly to need fertiliser']]},{t:'✂️ Advanced Care',src:'howto-grow.co.uk',r:[['Harvest','Pull when golf-ball sized and firm; 3–6 weeks. Do not delay — they turn woody'],['Bolting','Pull immediately if plants flower — roots will be inedible']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Carrots (loosens soil, marks rows), Lettuce, Spinach'],['Avoid','Hyssop']]}]},
+  beetroot:{name:'Beetroot',sub:'Boltardy · Cylindra',cat:'root',svg:'beetroot',sprout:8,water:2,harvest:65,secs:[{t:'🌱 Planting Setup',src:'gardenersworld.com',r:[['Sowing Time','Apr–Jul outdoors direct; Feb under cover in modules'],['Sowing Temp','10–20°C; soak seeds 30 mins before sowing to aid germination'],['Pot Depth','25cm+; beetroot seeds are clusters — thin to one seedling per cluster'],['Harvest window','Jun–Oct (Gardeners\' World)']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Full sun preferred; tolerates partial shade'],['Watering','Even watering prevents woody, tough roots']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Thinning','Thin to 10cm apart; eat thinnings as baby leaves — nutritious'],['Harvest','Golf-ball to tennis-ball size; twist off tops rather than cutting']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Lettuce, Cabbage, Onions, Garlic'],['Avoid','Pole beans (inhibit beetroot growth)']]}]},
+  onion:{name:'Onion',sub:'Yellow Sets · Spring',cat:'bulb',svg:'onion',sprout:10,water:2,harvest:90,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/onions',r:[['Planting Time','Plant sets Mar–Apr (RHS April calendar: "Plant onions, shallots and garlic sets")'],['Pot Depth','20cm+; sets planted 10cm apart, tips just below soil surface'],['Soil','Well-drained, fertile compost; firm soil prevents sets being lifted by frost']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Full sun — essential for bulb development'],['Watering','When top 2cm of compost is dry; reduce as bulbs ripen'],['Feeding','High-potash feed in June to swell bulbs']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Harvest cue','Tops turn yellow and fall over — signals harvest time'],['Curing','Lift and dry in sun for 2–3 weeks before storing']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Carrots (onion scent confuses carrot fly), Chamomile, Lettuce'],['Avoid','Beans, Peas (allium compounds inhibit legume growth)']]}]},
+  garlic:{name:'Garlic',sub:'Softneck · Solent Wight',cat:'bulb',svg:'garlic',sprout:14,water:1,harvest:240,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/garlic',r:[['Planting Time','Oct–Dec for best results — garlic needs cold to form a good bulb (RHS)'],['Method','Plant cloves 2.5cm deep, 15cm apart, tip just below soil surface'],['Pot Depth','20–25cm minimum (RHS recommends 25cm for containers)'],['Soil','Well-drained compost with 20–30% grit or perlite for drainage']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','6–8 hrs direct sun daily'],['Watering','Minimal — water only during prolonged dry spells; overwatering causes rot']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Scapes','Remove flower scapes to direct energy to the bulb'],['Harvest','Jun–Aug when 1–2 leaves still green; lift gently — do not pull'],['Curing','Dry in a warm, airy place for 2–3 weeks before storing']]},{t:'🤝 Companions',src:'northernpolytunnels.co.uk/garlic',r:[['Plant with','Strawberries, Carrots, Beetroot, Lettuce, Roses (deters aphids and carrot fly)'],['Avoid','Beans, Peas (garlic inhibits legume growth)']]}]},
+  pea:{name:'Peas',sub:'Sugar Snap · Mangetout',cat:'pod',svg:'pea',sprout:6,water:1,harvest:55,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/peas',r:[['Sowing Time','Mar–May outdoors; 5cm deep, 4–5cm apart around container edge'],['Sowing Temp','10–18°C'],['Pot Depth','30cm+ wide and deep; provide canes, netting or trellis for climbing']]},{t:'💧 Daily Care',src:'thrive.org.uk',r:[['Sunlight','Full sun to partial shade'],['Watering','Consistent and generous, especially when flowering and podding'],['Feeding','Not usually needed — peas fix their own nitrogen']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Picking','Pick pods regularly — essential to keep plant producing'],['Support','Tie in tendrils as plant grows']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Carrots, Radish, Mint (deters aphids), Lettuce'],['Avoid','Garlic, Onions, Shallots (alliums inhibit pea growth)']]}]},
+  basil:{name:'Basil',sub:'Genovese · Sweet',cat:'herb',svg:'herb',sprout:5,water:1,harvest:30,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/herbs/basil',r:[['Sowing Time','Apr–Jun indoors; do not sow until frost risk has passed — very frost tender'],['Sowing Temp','18–22°C'],['Pot Size','15–20cm wide and deep'],['Position','Warm windowsill or sheltered south-facing spot']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','6+ hrs; warm south-facing position essential'],['Watering','Moist but never waterlogged; water at base, not leaves'],['Feeding','Balanced liquid feed every 2 weeks']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Pinching','Pinch out flower buds immediately to extend leaf harvest'],['Harvesting','Always pick from the top to encourage bushy growth']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Tomatoes (repels aphids & whitefly), Peppers'],['Avoid','Sage (inhibits basil growth)']]}]},
+  chilli:{name:'Chilli',sub:'Cayenne · Hot',cat:'fruit',svg:'pepper',sprout:10,water:2,harvest:90,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/chillies',r:[['Sowing Time','Jan–Mar indoors — chillies need a long season, sow early'],['Sowing Temp','21–25°C in a heated propagator'],['Pot Size','25–30cm deep'],['Position','Greenhouse or very sheltered south-facing balcony']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','8 hrs direct sun — more demanding than sweet peppers'],['Watering','Allow top soil to dry slightly between waterings'],['Feeding','High-potash weekly once fruits start forming']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Overwintering','Chillies can be overwintered indoors and regrown next year'],['Harvest','Pick regularly; fully ripe chillies are hotter than green ones']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Basil, Carrots, Marjoram'],['Avoid','Fennel, Brassicas']]}]},
+  mint:{name:'Mint',sub:'Spearmint · Peppermint',cat:'herb',svg:'herb',sprout:7,water:1,harvest:28,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/herbs/mint',r:[['Sowing Time','Sow indoors Mar–May; plant out after last frost'],['Best method','Buy plug plants — mint seeds are slow and unreliable'],['Pot Size','20cm+ — MUST be grown in a container to prevent invasive spreading']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Partial shade ideal — prevents wilting in heat'],['Watering','Keep moist; mint is thirsty'],['Feeding','Balanced liquid feed monthly']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Containment','Always grow in its own pot — mint is invasive if planted in open ground'],['Harvest','Cut stems regularly to prevent flowering and maintain bushy growth']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Tomatoes, Peas, Brassicas (strong scent deters pests)'],['Avoid','Parsley (competes for resources)']]}]},
+  rocket:{name:'Rocket',sub:'Wild · Salad Leaves',cat:'leafy',svg:'lettuce',sprout:4,water:1,harvest:25,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/rocket',r:[['Sowing Time','Mar–Sep outdoors; succession sow every 2–3 weeks'],['Sowing Temp','10–18°C; avoid peak summer — bolts quickly in heat'],['Pot Depth','15cm minimum'],['Spacing','Thin to 15cm apart or grow as cut-and-come-again']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Partial shade in summer essential to delay bolting'],['Watering','Keep moist; drought causes rapid bolting and bitterness']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Harvesting','Cut leaves when 7–10cm long; do not pull whole plant'],['Bolting','Shade in hot weather; remove flowers to prolong harvest']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Lettuce, Radish, Carrots'],['Avoid','Brassicas (same pest family — cabbage white butterfly)']]}]},
+  'bok choy':{name:'Bok Choy',sub:'Pak Choi · Asian Green',cat:'brassica',svg:'kale',sprout:5,water:1,harvest:35,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/oriental-greens',r:[['Sowing Time','Mar–Apr or Aug–Sep (avoids peak heat and bolting risk)'],['Sowing Temp','10–20°C'],['Pot Depth','20cm+'],['Spacing','Thin to 15–20cm apart']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Partial shade in summer; full sun in spring and autumn'],['Watering','Consistently moist — drought causes bolting'],['Feeding','Nitrogen-rich feed for leafy growth']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Harvesting','Cut at base or harvest outer leaves for cut-and-come-again'],['Bolting','Avoid sowing Jun–Jul — heat causes rapid bolting']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Celery, Dill, Mint'],['Avoid','Tomatoes, Strawberries (different growing conditions)']]}]},
+  fennel:{name:'Florence Fennel',sub:'Bulbing · Sweet Anise',cat:'root',svg:'generic',sprout:10,water:2,harvest:70,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/florence-fennel',r:[['Sowing Time','May–Jul direct sow; avoid early sowing — cold triggers bolting'],['Sowing Temp','15–20°C'],['Pot Depth','30cm+ for bulb development'],['Note','Does not transplant well — direct sow into final container']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Full sun, sheltered from wind'],['Watering','Regular and even — irregular watering causes bolting'],['Feeding','Balanced liquid feed monthly']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Earthing up','Mound soil around bulb when golf-ball sized to blanch and sweeten'],['Harvest','When bulb is 7–10cm across; harvest before it bolts']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Keep isolated — fennel is allelopathic to most plants'],['Avoid','Tomatoes, Peppers, Beans, most vegetables (allelopathic — grow in isolation)']]}]},
+  shiso:{name:'Shiso',sub:'Perilla · Red & Green',cat:'herb',svg:'herb',sprout:7,water:1,harvest:35,secs:[{t:'🌱 Planting Setup',src:'gardenersworld.com',r:[['Sowing Time','Apr–May indoors; plant out after last frost (mid-May London)'],['Sowing Temp','18–22°C; seeds need light to germinate — do not cover'],['Pot Size','20cm+ wide and deep']]},{t:'💧 Daily Care',src:'gardenersworld.com',r:[['Sunlight','Full sun to partial shade; tolerates London summers well'],['Watering','Keep moist but well-drained; water at base'],['Feeding','Balanced liquid feed every 2–3 weeks']]},{t:'✂️ Advanced Care',src:'gardenersworld.com',r:[['Pinching','Pinch out flower spikes to extend leafy harvest'],['Harvesting','Pick young leaves regularly; both green and red varieties edible'],['Self-seeding','Allow a few plants to set seed — shiso self-seeds readily in sheltered spots']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Tomatoes, Aubergines, Cucumbers'],['Avoid','Fennel (allelopathic to herbs)']]}]},
+  'spring onion':{name:'Spring Onion',sub:'Salad Onion · Scallion',cat:'bulb',svg:'onion',sprout:7,water:1,harvest:42,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/spring-onions',r:[['Sowing Time','Mar–Aug outdoors; succession sow every 3 weeks'],['Sowing Temp','10–20°C'],['Pot Depth','15cm minimum'],['Spacing','Sow thinly in rows; thin to 1cm apart (no need for wider spacing)']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Full sun to partial shade'],['Watering','Keep moist; consistent moisture'],['Feeding','Not usually needed']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Harvesting','Pull when stems are pencil-thick — around 6 weeks from sowing'],['Succession','Sow every 3 weeks for a continuous supply through spring–autumn']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Carrots (confuse carrot fly), Lettuce'],['Avoid','Beans, Peas (alliums inhibit legumes)']]}]},
+  chard:{name:'Swiss Chard',sub:'Rainbow · Silverbeet',cat:'leafy',svg:'spinach',sprout:7,water:1,harvest:35,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/chard',r:[['Sowing Time','Apr–Jul outdoors; Apr for summer harvest, Jul for autumn/winter'],['Sowing Temp','10–18°C'],['Pot Depth','20cm+'],['Spacing','Thin to 30cm apart for full plants; 5cm for baby leaves']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Full sun to partial shade; very adaptable'],['Watering','Keep moist; drought-tolerant once established'],['Feeding','Nitrogen-rich feed for lush leafy growth']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Harvesting','Pick outer leaves from each plant — cut-and-come-again'],['Frost hardy','Tolerates light frosts — one of the most resilient balcony crops']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Beans, Brassicas, Lettuce'],['Avoid','Beets (same family — risk of shared disease)']]}]},
+};
+
+const ALIASES={
+  'aubergine':'eggplant','zucchini':'courgette','marrow':'courgette',
+  'chili':'chilli','cayenne':'chilli','jalapeno':'chilli','hot pepper':'chilli',
+  'pak choi':'bok choy','pakchoi':'bok choy','bokchoy':'bok choy','chinese cabbage':'bok choy',
+  'arugula':'rocket','rucola':'rocket','wild rocket':'rocket',
+  'scallion':'spring onion','green onion':'spring onion','salad onion':'spring onion',
+  'silverbeet':'chard','rainbow chard':'chard','swiss chard':'chard',
+  'perilla':'shiso','beefsteak plant':'shiso',
+  'spearmint':'mint','peppermint':'mint',
+  'sweet basil':'basil','genovese basil':'basil',
+  'corn':'sweetcorn','maize':'sweetcorn','sweet corn':'sweetcorn',
+  'beet':'beetroot','beets':'beetroot',
+  'green pepper':'pepper','bell pepper':'pepper','capsicum':'pepper','sweet pepper':'pepper',
+  'snap peas':'pea','mangetout':'pea','sugar snap':'pea','garden pea':'pea','snow peas':'pea',
+  'butterhead':'lettuce','iceberg':'lettuce','cos lettuce':'lettuce','romaine':'lettuce','gem lettuce':'lettuce',
+  'florence fennel':'fennel','bulb fennel':'fennel',
+  'dwarf kale':'kale','curly kale':'kale',
+  'cherry tomato':'tomato','plum tomato':'tomato','beefsteak tomato':'tomato',
+  'garlic chives':'garlic',
+};
+
+// ════════════════════════════════════════════════════════
+//  STATE
+// ════════════════════════════════════════════════════════
+const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+let curY=2026, curM=3;
+let sowings=[]; // {y,m,d,plant}
+let pendingDate=null, pendingPlant=null, pendingConfirm=null, activeFilter='all';
+
+// ════════════════════════════════════════════════════════
+//  HELPERS
+// ════════════════════════════════════════════════════════
+function pSVG(key,size){
+  return `<svg viewBox="0 0 100 100" width="${size}" height="${size}" aria-hidden="true">${SVG[key]||SVG.generic}</svg>`;
+}
+
+function lookupPlant(raw){
+  const q=raw.toLowerCase().trim();
+  if(KNOWN[q])return{key:q,data:KNOWN[q]};
+  const ak=ALIASES[q];
+  if(ak&&KNOWN[ak])return{key:ak,data:KNOWN[ak]};
+  for(const[k,p]of Object.entries(KNOWN)){
+    if(p.name.toLowerCase()===q)return{key:k,data:p};
+  }
+  for(const[k,p]of Object.entries(KNOWN)){
+    if(p.name.toLowerCase().startsWith(q)||q.startsWith(k))return{key:k,data:p};
+  }
+  for(const[alias,target]of Object.entries(ALIASES)){
+    if(alias.includes(q)||q.includes(alias)){
+      if(KNOWN[target])return{key:target,data:KNOWN[target]};
+    }
+  }
+  return null;
+}
+
+// ════════════════════════════════════════════════════════
+//  TABS
+// ════════════════════════════════════════════════════════
+function showTab(id){
+  document.querySelectorAll('.sc').forEach(s=>s.classList.remove('vis'));
+  document.getElementById('s-'+id).classList.add('vis');
+  document.getElementById('tab-cal').classList.toggle('on',id==='cal');
+  document.getElementById('tab-enc').classList.toggle('on',id==='enc');
+}
+
+// ════════════════════════════════════════════════════════
+//  CALENDAR
+// ════════════════════════════════════════════════════════
+function buildCal(){
+  const g=document.getElementById('cal-grid'); g.innerHTML='';
+  document.getElementById('cal-title').textContent=MONTHS[curM]+' '+curY;
+  const fd=new Date(curY,curM,1).getDay();
+  const days=new Date(curY,curM+1,0).getDate();
+  const today=new Date();
+  for(let i=0;i<fd;i++){
+    const e=document.createElement('div'); e.className='cc empty'; g.appendChild(e);
+  }
+  for(let d=1;d<=days;d++){
+    const e=document.createElement('div');
+    const isT=today.getFullYear()===curY&&today.getMonth()===curM&&today.getDate()===d;
+    const dp=sowings.filter(s=>s.y===curY&&s.m===curM&&s.d===d);
+    e.className='cc'+(isT?' today':'')+(dp.length?' has-plant':'');
+    e.setAttribute('role','button');
+    e.setAttribute('aria-label',`${MONTHS[curM]} ${d}${dp.length?' — '+dp.length+' plant(s) sown':''}`);
+    const num=document.createElement('span'); num.textContent=d; e.appendChild(num);
+    if(dp.length){
+      const w=document.createElement('div'); w.className='cc-plants';
+      dp.forEach(s=>{
+        const dot=document.createElement('div'); dot.className='cc-dot';
+        dot.innerHTML=pSVG((KNOWN[s.plant]||{svg:'generic'}).svg,14);
+        w.appendChild(dot);
+      });
+      e.appendChild(w);
+    }
+    e.onclick=()=>openSowModal(d,curM,curY);
+    g.appendChild(e);
+  }
+}
+function changeMonth(dir){
+  curM+=dir;
+  if(curM<0){curM=11;curY--;} if(curM>11){curM=0;curY++;}
+  buildCal();
+}
+
+// ════════════════════════════════════════════════════════
+//  HYBRID DASHBOARD — PRD Hybrid Dashboard Architecture
+//  §2 Growth Tracker (long-term) + §3 Task Cards (daily)
+// ════════════════════════════════════════════════════════
+
+// completedTimestamps: { sowKey: { taskKey: completedAtMs } }
+// — stores the exact time each task was marked done.
+// Rules:
+//   · Completed tasks stay visible for 48 hours, then auto-expire.
+//   · Overdue tasks (daysLeft < 0) stay visible until the user explicitly completes them.
+const completedTimestamps={};
+const DONE_VISIBLE_MS=48*60*60*1000; // 48 hours in ms
+
+function isTaskDone(sowKey, taskKey){
+  const ts=completedTimestamps[sowKey]?.[taskKey];
+  if(!ts) return false;
+  // Auto-expire after 48h
+  if(Date.now()-ts > DONE_VISIBLE_MS){
+    delete completedTimestamps[sowKey][taskKey];
+    return false;
+  }
+  return true;
+}
+
+// ── §3 TASK REMINDER CARDS ─────────────────────────────
+function buildTaskCards(){
+  const zone=document.getElementById('task-zone');
+  const countEl=document.getElementById('task-count');
+  zone.innerHTML='';
+  const today=new Date(); today.setHours(0,0,0,0);
+
+  if(!sowings.length){
+    zone.innerHTML='<div class="ms-empty">No tasks yet — add a plant to get daily reminders.</div>';
+    countEl.textContent=''; return;
+  }
+
+  // Collect all maintenance tasks
+  const tasks=[];
+  sowings.forEach((s,idx)=>{
+    const pd=KNOWN[s.plant]; if(!pd)return;
+    const sow=new Date(s.y,s.m,s.d);
+    const sowKey=`${s.y}-${s.m}-${s.d}-${s.plant}-${idx}`;
+    if(!completedTimestamps[sowKey]) completedTimestamps[sowKey]={};
+    const daysSinceSow=Math.round((today-sow)/864e5);
+
+    // Watering: recurring every pd.water days
+    // Show current cycle AND any overdue cycles not yet actioned
+    const waterCycle=pd.water;
+    const currentWaterCycle=Math.floor(daysSinceSow/waterCycle);
+    for(let c=Math.max(0,currentWaterCycle-1);c<=currentWaterCycle;c++){
+      const dueDayFromSow=(c+1)*waterCycle;
+      const daysLeft=dueDayFromSow-daysSinceSow;
+      const taskKey=`water-${c}`;
+      const done=isTaskDone(sowKey,taskKey);
+      // Show if: due within today/overdue (daysLeft<=0) OR due within next 2 days OR done within 48h
+      if(daysLeft<=2||done){
+        tasks.push({sowKey,icon:'💧',action:'Water',plant:pd.name,type:'water',daysLeft,taskKey,done,isOverdue:daysLeft<0&&!done});
+      }
+    }
+
+    // Feeding: every 14 days after sprouting
+    if(daysSinceSow>=pd.sprout){
+      const feedCycle=14;
+      const elapsed=daysSinceSow-pd.sprout;
+      const currentFeedCycle=Math.floor(elapsed/feedCycle);
+      for(let c=Math.max(0,currentFeedCycle-1);c<=currentFeedCycle;c++){
+        const dueDayFromSow=pd.sprout+(c+1)*feedCycle;
+        const daysLeft=dueDayFromSow-daysSinceSow;
+        const taskKey=`feed-${c}`;
+        const done=isTaskDone(sowKey,taskKey);
+        if(daysLeft<=2||done){
+          tasks.push({sowKey,icon:'🌿',action:'Feed',plant:pd.name,type:'feed',daysLeft,taskKey,done,isOverdue:daysLeft<0&&!done});
+        }
+      }
+    }
+  });
+
+  // Deduplicate by sowKey+taskKey
+  const seen=new Set();
+  const unique=tasks.filter(t=>{const k=t.sowKey+t.taskKey;if(seen.has(k))return false;seen.add(k);return true;});
+
+  // Sort: overdue first → due today → done (most recently completed first) → upcoming
+  unique.sort((a,b)=>{
+    if(a.isOverdue!==b.isOverdue) return a.isOverdue?-1:1;
+    if(a.done!==b.done) return a.done?1:-1;
+    return a.daysLeft-b.daysLeft;
+  });
+
+  const pending=unique.filter(t=>!t.done);
+  const done=unique.filter(t=>t.done);
+
+  countEl.textContent=pending.length?`${pending.length} pending`:'';
+
+  if(!unique.length){
+    zone.innerHTML='<div class="ms-empty">No maintenance tasks right now.</div>'; return;
+  }
+
+  if(!pending.length){
+    zone.innerHTML=`<div class="task-done-wrap"><span style="font-size:18px">✓</span><span class="task-done-msg">All your plants are happy for today!</span></div>`;
+    return;
+  }
+
+  const carousel=document.createElement('div');
+  carousel.className='task-carousel';
+
+  [...pending,...done].forEach(t=>{
+    const badgeClass=t.type==='water'?'badge-water':'badge-feed';
+    let urgencyLabel, urgencyColor, badgeContent;
+    if(t.done){
+      // Show time remaining until card disappears
+      const ts=completedTimestamps[t.sowKey]?.[t.taskKey]||Date.now();
+      const hoursLeft=Math.max(0,Math.round((DONE_VISIBLE_MS-(Date.now()-ts))/3600000));
+      urgencyLabel=hoursLeft>1?`✓ Clears in ${hoursLeft}h`:'✓ Done';
+      urgencyColor='var(--green)';
+      badgeContent='✓';
+    } else if(t.isOverdue){
+      urgencyLabel='Overdue';
+      urgencyColor='var(--red)';
+      badgeContent='!';
+    } else if(t.daysLeft<=0){
+      urgencyLabel='Due today';
+      urgencyColor='var(--red)';
+      badgeContent='!';
+    } else {
+      urgencyLabel=`In ${t.daysLeft}d`;
+      urgencyColor='var(--muted)';
+      badgeContent=t.daysLeft;
+    }
+
+    const card=document.createElement('div');
+    card.className='task-card'+(t.done?' done':'')+(t.isOverdue?' overdue':'');
+    card.innerHTML=`
+      <div class="task-card-badge ${badgeClass}">${badgeContent}</div>
+      <span class="task-card-ico">${t.icon}</span>
+      <div class="task-card-action">${t.action}</div>
+      <div class="task-card-plant">${t.plant}</div>
+      <div style="font-size:8px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:${urgencyColor};margin-top:5px">${urgencyLabel}</div>`;
+    card.onclick=()=>toggleTaskCard(t.sowKey,t.taskKey);
+    carousel.appendChild(card);
+  });
+
+  zone.appendChild(carousel);
+}
+
+function toggleTaskCard(sowKey, taskKey){
+  if(!completedTimestamps[sowKey]) completedTimestamps[sowKey]={};
+  if(completedTimestamps[sowKey][taskKey]){
+    // Undo: remove timestamp
+    delete completedTimestamps[sowKey][taskKey];
+  } else {
+    // Complete: record timestamp now
+    completedTimestamps[sowKey][taskKey]=Date.now();
+  }
+  buildTaskCards();
+}
+
+// Legacy alias
+function completeTaskCard(sowKey,taskKey){ toggleTaskCard(sowKey,taskKey); }
+function completeTask(e,sowKey,taskKey){ e.stopPropagation(); toggleTaskCard(sowKey,taskKey); }
+
+// Derive current life stage from days elapsed (major stages only — no watering)
+function getStage(daysSinceSow, pd){
+  if(daysSinceSow<0)             return {name:'Not sown yet', nextLabel:'Sprouting', nextDays:pd.sprout};
+  if(daysSinceSow<pd.sprout)     return {name:'Germinating',  nextLabel:'Sprouting',  nextDays:pd.sprout-daysSinceSow};
+  if(daysSinceSow<pd.sprout*2)   return {name:'Sprouting',    nextLabel:'Growing',    nextDays:pd.sprout*2-daysSinceSow};
+  if(daysSinceSow<pd.harvest*0.7){return {name:'Growing',      nextLabel:'Flowering',  nextDays:Math.round(pd.harvest*0.7)-daysSinceSow};}
+  if(daysSinceSow<pd.harvest)    return {name:'Flowering',    nextLabel:'Harvest',    nextDays:pd.harvest-daysSinceSow};
+  return                                {name:'Ready to harvest', nextLabel:null, nextDays:0};
+}
+
+function buildDashboard(){
+  buildGrowthTracker();
+  buildTaskCards();
+}
+// keep old name working
+function buildMilestones(){ buildDashboard(); }
+
+// ── §2 GROWTH TRACKER ─────────────────────────────────
+// Category bar colours — one per plant category
+const CAT_BAR={fruit:'#FF3B30',leafy:'#34C759',root:'#FF9500',pod:'#AF52DE',bulb:'#FFD60A',brassica:'#007AFF',herb:'#34C759'};
+
+function buildGrowthTracker(){
+  const list=document.getElementById('gt-list'); list.innerHTML='';
+  const today=new Date(); today.setHours(0,0,0,0);
+
+  if(!sowings.length){
+    list.innerHTML='<div class="ms-empty">Tap a calendar date to sow a plant — your growth tracks will appear here.</div>';
+    return;
+  }
+
+  sowings.forEach((s,idx)=>{
+    const pd=KNOWN[s.plant]; if(!pd)return;
+    const sow=new Date(s.y,s.m,s.d);
+    const daysSinceSow=Math.round((today-sow)/864e5);
+    const totalDays=pd.harvest;
+    const progressPct=Math.min(100,Math.max(0,(daysSinceSow/totalDays)*100));
+    const barColor=CAT_BAR[pd.cat]||'#34C759';
+    const stage=getStage(daysSinceSow,pd);
+
+    // Stage dots: sprout (~sprout days), grow (~2×sprout), flower (~70%), harvest (100%)
+    const dots=[
+      {pct:(pd.sprout/totalDays)*100},
+      {pct:(pd.sprout*2/totalDays)*100},
+      {pct:70},
+    ].filter(d=>d.pct<99);
+
+    const sowLabel=`${MONTHS[s.m].slice(0,3)} ${s.d} · ${Math.round(progressPct)}% through lifecycle`;
+    const nextHtml=stage.nextLabel
+      ? `Next: <span>${stage.name==='Ready to harvest'?'Harvest now!':stage.nextLabel+' in '+stage.nextDays+'d'}</span>`
+      : `<span style="color:var(--green)">Ready to harvest!</span>`;
+
+    const card=document.createElement('div');
+    card.className='gt-card';
+    card.title='Tap to view care guide';
+    card.onclick=()=>goToPlant(s.plant);
+    card.innerHTML=`
+      <div class="gt-header">
+        <div class="gt-ico">${pSVG(pd.svg,34)}</div>
+        <div style="flex:1;min-width:0">
+          <div class="gt-name">${pd.name}</div>
+          <div class="gt-meta">${sowLabel}</div>
+        </div>
+      </div>
+      <div class="gt-stage-row">
+        <div class="gt-stage">${stage.name}</div>
+        <div class="gt-next">${nextHtml}</div>
+      </div>
+      <div class="gt-track">
+        <div class="gt-fill" style="width:${progressPct}%;background:${barColor}"></div>
+        ${dots.map(d=>`<div class="gt-dot" style="left:${d.pct}%"></div>`).join('')}
+      </div>`;
+    list.appendChild(card);
+  });
+}
+
+
+// ════════════════════════════════════════════════════════
+//  SOW MODAL
+// ════════════════════════════════════════════════════════
+const MODAL_CORE=['tomato','chilli','pepper','eggplant','courgette','cucumber','strawberry','sweetcorn','lettuce','spinach','kale','carrot','radish','beetroot','onion','garlic','pea','basil','mint','rocket','bok choy','chard','spring onion'];
+
+function openSowModal(d,m,y){
+  pendingDate={d,m,y}; pendingPlant=null;
+  document.getElementById('modal-title').textContent=MONTHS[m]+' '+d+', '+y;
+  document.getElementById('modal-btn').disabled=true;
+  // reset search
+  const si=document.getElementById('modal-search'); si.value='';
+  document.getElementById('modal-no-results').classList.remove('vis');
+  document.getElementById('modal-add-btn').classList.remove('vis');
+  document.getElementById('modal-added-msg').innerHTML='';
+  buildPickerGrid('');
+  document.getElementById('modal-bg').classList.add('vis');
+  document.body.style.overflow='hidden';
+  setTimeout(()=>si.focus(),120);
+}
+
+function buildPickerGrid(filter){
+  const grid=document.getElementById('picker-grid'); grid.innerHTML='';
+  const f=filter.toLowerCase().trim();
+  // build list: all KNOWN plants, sorted so matches come first
+  const allKeys=Object.keys(KNOWN);
+  const sorted=f
+    ? allKeys.filter(k=>KNOWN[k].name.toLowerCase().includes(f)||k.includes(f))
+    : MODAL_CORE.filter(k=>KNOWN[k]);
+  sorted.forEach(key=>{
+    const p=KNOWN[key]; if(!p)return;
+    const el=document.createElement('div'); el.className='pick-opt'; el.dataset.plant=key;
+    el.setAttribute('role','button'); el.setAttribute('aria-label','Sow '+p.name);
+    el.innerHTML=`<div class="pick-svg">${pSVG(p.svg,34)}</div><div><div class="pick-name">${p.name}</div><div class="pick-sub">${p.sub}</div></div>`;
+    el.onclick=()=>{
+      document.querySelectorAll('.pick-opt').forEach(o=>o.classList.remove('sel'));
+      el.classList.add('sel'); pendingPlant=key;
+      document.getElementById('modal-btn').disabled=false;
+    };
+    grid.appendChild(el);
+  });
+  return sorted.length;
+}
+
+function filterPickerGrid(val){
+  const f=val.toLowerCase().trim();
+  const count=buildPickerGrid(f);
+  // reset selection when filter changes
+  pendingPlant=null;
+  document.getElementById('modal-btn').disabled=true;
+  const noRes=document.getElementById('modal-no-results');
+  const addBtn=document.getElementById('modal-add-btn');
+  if(f&&count===0){
+    noRes.classList.add('vis');
+    addBtn.classList.add('vis');
+    addBtn.textContent='+ Add "'+val.trim()+'"';
+  } else {
+    noRes.classList.remove('vis');
+    // show add button if typed something not exactly matching
+    const exactMatch=f&&Object.values(KNOWN).some(p=>p.name.toLowerCase()===f);
+    if(f&&!exactMatch){ addBtn.classList.add('vis'); addBtn.textContent='+ Add "'+val.trim()+'"'; }
+    else { addBtn.classList.remove('vis'); }
+  }
+}
+
+function modalAddNew(){
+  const raw=document.getElementById('modal-search').value.trim(); if(!raw)return;
+  const result=lookupPlant(raw);
+  let key, p;
+  if(result){
+    key=result.key; p=result.data;
+  } else {
+    const name=raw.charAt(0).toUpperCase()+raw.slice(1);
+    key='custom-'+raw.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'');
+    p={name,sub:'Custom · Balcony Crop',cat:'leafy',svg:'generic',sprout:7,water:2,harvest:60,
+      secs:[
+        {t:'🌱 Planting Setup',src:'rhs.org.uk',r:[['Sowing Time','Check seed packet for UK timing'],['Sowing Temp','15–21°C for most vegetables'],['Pot Size','20–30cm+ deep'],['Soil','Peat-free multipurpose compost']]},
+        {t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','6+ hrs sun, sheltered spot'],['Watering','Keep moist but not waterlogged'],['Feeding','Balanced liquid feed every 2 weeks']]},
+        {t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['General','Harvest regularly to encourage production'],['Pest watch','Check for aphids and slugs']]},
+        {t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Marigolds (pest deterrent), Basil'],['Avoid','Fennel (allelopathic)']]}
+      ]
+    };
+    // add to KNOWN so it persists in this session
+    KNOWN[key]=p;
+  }
+  // add to encyclopedia silently
+  buildEncBlock(key,p,document.getElementById('plant-list'));
+  updateCount();
+  // add to grid and auto-select
+  buildPickerGrid(document.getElementById('modal-search').value);
+  // select it
+  pendingPlant=key;
+  document.getElementById('modal-btn').disabled=false;
+  document.querySelectorAll('.pick-opt').forEach(o=>{
+    if(o.dataset.plant===key) o.classList.add('sel');
+  });
+  // show confirmation pill
+  document.getElementById('modal-added-msg').innerHTML=
+    `<div class="modal-added-pill">✓ ${p.name} added — ready to sow</div>`;
+  document.getElementById('modal-search').value='';
+  document.getElementById('modal-no-results').classList.remove('vis');
+  document.getElementById('modal-add-btn').classList.remove('vis');
+}
+function confirmSow(){
+  if(!pendingPlant||!pendingDate)return;
+  sowings.push({...pendingDate,plant:pendingPlant});
+  closeModal(); buildCal(); buildMilestones();
+}
+function closeModal(){
+  document.getElementById('modal-bg').classList.remove('vis');
+  document.body.style.overflow='';
+}
+function closeBg(e){if(e.target===document.getElementById('modal-bg'))closeModal();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+// ════════════════════════════════════════════════════════
+//  ENCYCLOPEDIA — ADD FLOW
+// ════════════════════════════════════════════════════════
+function tryAdd(){
+  const inp=document.getElementById('enc-input');
+  const raw=inp.value.trim(); if(!raw)return;
+  const zone=document.getElementById('confirm-zone');
+  const result=lookupPlant(raw);
+  if(result){
+    const{key,data:p}=result;
+    if(document.getElementById('enc-'+key)){
+      document.getElementById('enc-'+key).scrollIntoView({behavior:'smooth',block:'center'});
+      inp.value=''; zone.innerHTML=''; return;
+    }
+    pendingConfirm={key,p};
+    showConfirm(raw,p,zone,false);
+  } else {
+    const name=raw.charAt(0).toUpperCase()+raw.slice(1);
+    const genKey='custom-'+raw.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'');
+    if(document.getElementById('enc-'+genKey)){inp.value='';return;}
+    const genData={
+      name,sub:'Custom · Balcony Crop',cat:'leafy',svg:'generic',sprout:7,water:2,harvest:60,
+      secs:[
+        {t:'🌱 Planting Setup',src:'rhs.org.uk',r:[['Sowing Time','Check seed packet for UK timing; most vegetables sow Apr–Jun indoors'],['Sowing Temp','Most vegetables: 15–21°C'],['Pot Size','20–30cm+ deep as a general guide'],['Soil','Peat-free multipurpose compost with good drainage']]},
+        {t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Most vegetables need 6+ hrs sun in a sheltered spot'],['Watering','Keep compost moist but not waterlogged'],['Feeding','General balanced liquid feed every 2 weeks']]},
+        {t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['General tip','Harvest regularly to encourage continued production'],['Pest watch','Check leaves regularly for aphids and slugs']]},
+        {t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Marigolds (general pest deterrent), Basil'],['Avoid','Fennel (allelopathic to most crops)']]}
+      ]
+    };
+    pendingConfirm={key:genKey,p:genData,isGeneric:true};
+    showConfirm(raw,genData,zone,true);
+  }
+}
+
+function showConfirm(raw,p,zone,isGeneric){
+  const svgKey=SVG[p.svg]?p.svg:'generic';
+  const preview=p.secs[0]?.r?.slice(0,3)||[];
+  zone.innerHTML=`
+    <div class="confirm-card">
+      <div class="confirm-hd">
+        <span class="confirm-hd-txt">✦ ${isGeneric?'"'+raw+'" — adding with general UK guide':'Is this the correct plant?'}</span>
+        <span class="confirm-hd-sub">${isGeneric?'Edit notes once added':'Confirm to add to encyclopedia'}</span>
+      </div>
+      <div class="confirm-body">
+        <div class="confirm-plant-row">
+          <div style="width:52px;height:52px;flex-shrink:0">${pSVG(svgKey,52)}</div>
+          <div>
+            <div class="confirm-name">${p.name}</div>
+            <div class="confirm-sub">${p.sub}</div>
+            <div style="display:flex;align-items:center;gap:7px;margin-top:6px;flex-wrap:wrap">
+              <span style="font-size:8px;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;padding:2px 8px;border:2px solid var(--black);background:var(--yellow)">${(CATS[p.cat]||p.cat).toUpperCase()}</span>
+              <span style="font-size:9px;font-weight:700;color:var(--muted)">Sprout ~${p.sprout}d &nbsp;·&nbsp; Harvest ~${p.harvest}d</span>
+            </div>
+          </div>
+        </div>
+        <div>${preview.map(([l,v])=>`<div class="confirm-preview-row"><span class="confirm-label">${l}</span><span class="confirm-val">${v}</span></div>`).join('')}</div>
+        <div class="confirm-btns">
+          <button class="btn-no" onclick="cancelConfirm()">✕ Cancel</button>
+          <button class="btn-yes" onclick="acceptConfirm()">✓ Add to Encyclopedia</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+function acceptConfirm(){
+  if(!pendingConfirm)return;
+  const{key,p}=pendingConfirm;
+  buildEncBlock(key,p,document.getElementById('plant-list'));
+  document.getElementById('enc-input').value='';
+  cancelConfirm(); updateCount();
+  setTimeout(()=>document.getElementById('enc-'+key)?.scrollIntoView({behavior:'smooth',block:'center'}),100);
+}
+function cancelConfirm(){
+  document.getElementById('confirm-zone').innerHTML='';
+  pendingConfirm=null;
+}
+
+// ════════════════════════════════════════════════════════
+//  ENCYCLOPEDIA — BUILD
+// ════════════════════════════════════════════════════════
+function buildEncBlock(key,p,container){
+  if(document.getElementById('enc-'+key))return;
+  const cat=p.cat||'leafy';
+  const[bg,accent]=CAT_COLORS[cat]||['#F2F2F7','#555'];
+  const isCustom=key.startsWith('custom-');
+  const block=document.createElement('div');
+  block.className='plant-block'; block.id='enc-'+key; block.dataset.cat=cat;
+  const tagsHtml=`<span class="ph-tag" style="background:${bg};color:${accent}">${CATS[cat]||cat}</span>${isCustom?'<span class="ph-tag" style="background:var(--yellow);color:#7A5C00">Added</span>':''}`;
+  const secsHtml=(p.secs||[]).map(s=>`
+    <div class="sec-block">
+      <div class="sec-hd" onclick="toggleSec(this)">
+        <span class="sec-title">${s.t}</span>
+        <span class="sec-chev">∨</span>
+      </div>
+      <div class="sec-body" style="display:none">
+        ${(s.r||[]).map(([l,v])=>`<div class="care-row"><div class="care-label">${l}</div><div class="care-val">${v}</div></div>`).join('')}
+        <div class="src-note">Source: ${s.src||'rhs.org.uk'}</div>
+      </div>
+    </div>`).join('');
+  block.innerHTML=`
+    <div class="plant-hd" onclick="togglePlant(this)" role="button" aria-expanded="false">
+      <div class="ph-left">
+        <div class="ph-ico" style="background:${bg}">${pSVG(p.svg||'generic',40)}</div>
+        <div>
+          <div class="ph-name">${p.name}</div>
+          <div class="ph-sub">${p.sub||''}</div>
+          <div class="ph-tags">${tagsHtml}</div>
+        </div>
+      </div>
+      <span class="ph-chev" aria-hidden="true">∨</span>
+    </div>
+    <div class="plant-sections" style="display:none">${secsHtml}</div>`;
+  container.appendChild(block);
+}
+
+function buildAllEnc(){
+  const list=document.getElementById('plant-list'); list.innerHTML='';
+  const core=['tomato','chilli','pepper','eggplant','courgette','cucumber','strawberry','sweetcorn','lettuce','spinach','kale','carrot','radish','beetroot','onion','garlic','pea','basil','mint','rocket','bok choy','chard','spring onion'];
+  core.forEach(k=>{if(KNOWN[k])buildEncBlock(k,KNOWN[k],list);});
+  updateCount();
+}
+
+function updateCount(){
+  const n=document.querySelectorAll('#plant-list .plant-block').length;
+  document.getElementById('enc-count').textContent=n+' plants · RHS verified';
+}
+
+function filterEnc(val){
+  const v=val.toLowerCase().trim();
+  document.querySelectorAll('#plant-list .plant-block').forEach(b=>{
+    const name=b.querySelector('.ph-name').textContent.toLowerCase();
+    const catOk=activeFilter==='all'||b.dataset.cat===activeFilter;
+    b.style.display=(catOk&&(v===''||name.includes(v)))?'block':'none';
+  });
+}
+
+function buildFilterStrip(){
+  const strip=document.getElementById('filter-strip'); strip.innerHTML='';
+  const all=document.createElement('button'); all.className='fchip on'; all.textContent='All'; all.dataset.f='all'; all.onclick=()=>setFilter('all'); strip.appendChild(all);
+  Object.entries(CATS).forEach(([k,v])=>{
+    const c=document.createElement('button'); c.className='fchip'; c.textContent=v; c.dataset.f=k; c.onclick=()=>setFilter(k); strip.appendChild(c);
+  });
+}
+function setFilter(f){
+  activeFilter=f;
+  document.querySelectorAll('.fchip').forEach(c=>c.classList.toggle('on',c.dataset.f===f));
+  document.querySelectorAll('#plant-list .plant-block').forEach(b=>b.style.display=(f==='all'||b.dataset.cat===f)?'block':'none');
+}
+
+function togglePlant(hd){
+  const s=hd.nextElementSibling, c=hd.querySelector('.ph-chev'), open=s.style.display!=='none';
+  s.style.display=open?'none':'block'; c.textContent=open?'∨':'∧';
+  hd.setAttribute('aria-expanded',String(!open));
+}
+function toggleSec(hd){
+  const b=hd.nextElementSibling, c=hd.querySelector('.sec-chev'), open=b.style.display!=='none';
+  b.style.display=open?'none':'block'; c.textContent=open?'∨':'∧';
+}
+
+// Navigate to encyclopedia and open the specific plant entry
+function goToPlant(key){
+  showTab('enc');
+  // Reset search and filter so the plant is visible
+  document.getElementById('enc-input').value='';
+  filterEnc('');
+  setFilter('all');
+  // If plant block doesn't exist yet, build it first
+  if(!document.getElementById('enc-'+key)&&KNOWN[key]){
+    buildEncBlock(key,KNOWN[key],document.getElementById('plant-list'));
+    updateCount();
+  }
+  const block=document.getElementById('enc-'+key);
+  if(!block)return;
+  // Ensure it's expanded
+  const hd=block.querySelector('.plant-hd');
+  const sections=block.querySelector('.plant-sections');
+  if(sections&&sections.style.display==='none'){
+    sections.style.display='block';
+    const chev=hd?.querySelector('.ph-chev');
+    if(chev) chev.textContent='∧';
+    if(hd) hd.setAttribute('aria-expanded','true');
+  }
+  // Scroll to it with a small delay so the tab switch renders first
+  setTimeout(()=>block.scrollIntoView({behavior:'smooth',block:'start'}),80);
+}
+
+document.getElementById('enc-input').addEventListener('keydown',e=>{if(e.key==='Enter')tryAdd();});
+
+// ════════════════════════════════════════════════════════
+//  INIT
+// ════════════════════════════════════════════════════════
+buildFilterStrip();
+buildAllEnc();
+buildCal();
+</script>
+</body>
+</html>
