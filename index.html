@@ -212,10 +212,90 @@ body{font-family:'Inter',sans-serif;background:var(--gray);color:var(--black);mi
 .footer-link:hover{text-decoration:underline}
 
 /* ── RESPONSIVE ── */
+/* ── AUTH SCREENS ── */
+#auth-wrap{position:fixed;inset:0;background:var(--white);z-index:500;display:flex;flex-direction:column;overflow-y:auto}
+#auth-wrap.hidden{display:none}
+
+/* Landing */
+.auth-landing{flex:1;display:flex;flex-direction:column;max-width:480px;margin:0 auto;width:100%;padding:48px 28px 32px}
+.auth-logo-block{margin-bottom:40px}
+.auth-logo-ico{width:52px;height:52px;background:var(--black);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.auth-logo-ico svg{width:34px;height:34px}
+.auth-headline{font-size:clamp(28px,6vw,40px);font-weight:900;letter-spacing:-0.03em;text-transform:uppercase;line-height:0.95;color:var(--black)}
+.auth-headline span{color:var(--green)}
+.auth-sub{font-size:13px;font-weight:500;color:var(--muted);margin-top:10px;line-height:1.55}
+
+.auth-features{display:flex;flex-direction:column;gap:10px;margin:28px 0 32px}
+.auth-feat{display:flex;align-items:center;gap:12px;padding:12px 14px;border:2px solid var(--black);background:var(--white)}
+.auth-feat-ico{font-size:18px;flex-shrink:0;width:28px;text-align:center}
+.auth-feat-txt{font-size:11px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:var(--black)}
+.auth-feat-sub{font-size:10px;font-weight:400;color:var(--muted);margin-top:1px}
+
+.auth-btn-stack{display:flex;flex-direction:column;gap:8px}
+.auth-btn{width:100%;padding:14px 16px;font-family:'Inter',sans-serif;font-size:11px;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;border:2px solid var(--black);display:flex;align-items:center;justify-content:center;gap:10px;transition:all 0.12s}
+.auth-btn-primary{background:var(--black);color:var(--white)}
+.auth-btn-primary:hover{background:#333}
+.auth-btn-google{background:var(--white);color:var(--black)}
+.auth-btn-google:hover{background:var(--gray)}
+.auth-btn-apple{background:var(--black);color:var(--white);border-color:var(--black)}
+.auth-btn-divider{display:flex;align-items:center;gap:10px;margin:4px 0}
+.auth-btn-divider-line{flex:1;height:1px;background:var(--gray2)}
+.auth-btn-divider-txt{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)}
+.auth-guest{text-align:center;margin-top:16px;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);cursor:pointer;text-decoration:underline}
+.auth-guest:hover{color:var(--black)}
+
+/* Login form */
+.auth-form-screen{flex:1;display:flex;flex-direction:column;max-width:480px;margin:0 auto;width:100%;padding:40px 28px 32px}
+.auth-back{display:flex;align-items:center;gap:6px;font-size:10px;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);cursor:pointer;margin-bottom:32px;background:none;border:none;font-family:'Inter',sans-serif;padding:0}
+.auth-back:hover{color:var(--black)}
+.auth-form-title{font-size:24px;font-weight:900;letter-spacing:-0.02em;text-transform:uppercase;margin-bottom:4px}
+.auth-form-sub{font-size:12px;font-weight:500;color:var(--muted);margin-bottom:28px;line-height:1.5}
+.auth-input-wrap{position:relative;margin-bottom:12px}
+.auth-input{width:100%;border:2px solid var(--black);padding:14px 14px;font-family:'Inter',sans-serif;font-size:14px;font-weight:500;color:var(--black);outline:none;background:var(--white);transition:border-color 0.1s}
+.auth-input:focus{border-color:var(--green)}
+.auth-input::placeholder{color:var(--muted);font-weight:400}
+.auth-input-label{font-size:9px;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;color:var(--black);margin-bottom:6px;display:block}
+.auth-submit{width:100%;background:var(--black);color:var(--white);border:2px solid var(--black);padding:14px;font-family:'Inter',sans-serif;font-size:11px;font-weight:900;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;margin-top:4px;transition:opacity 0.1s}
+.auth-submit:hover{opacity:0.85}
+.auth-submit:disabled{opacity:0.35;cursor:default}
+.auth-terms{font-size:9px;font-weight:500;color:var(--muted);margin-top:14px;line-height:1.6;text-align:center}
+
+/* OTP screen */
+.otp-digits{display:flex;gap:10px;margin-bottom:16px}
+.otp-digit{width:52px;height:62px;border:2px solid var(--black);font-family:'Inter',sans-serif;font-size:24px;font-weight:900;text-align:center;color:var(--black);outline:none;background:var(--white);transition:border-color 0.1s}
+.otp-digit:focus{border-color:var(--green)}
+.otp-resend{font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-top:8px;cursor:pointer}
+.otp-resend span{color:var(--green);cursor:pointer}
+
+/* Success */
+.auth-success{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;max-width:480px;margin:0 auto;width:100%;padding:40px 28px;text-align:center}
+.auth-success-ico{width:64px;height:64px;background:var(--green);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:30px}
+.auth-success-title{font-size:22px;font-weight:900;letter-spacing:-0.01em;text-transform:uppercase;margin-bottom:8px}
+.auth-success-sub{font-size:13px;font-weight:500;color:var(--muted);line-height:1.55;margin-bottom:32px}
+.auth-success-uid{font-family:'Inter',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);background:var(--gray);padding:8px 12px;border:1px solid var(--gray2);margin-bottom:28px}
+
+/* Soft wall modal */
+.soft-wall-bg{display:none;position:fixed;inset:0;background:rgba(10,10,10,0.6);z-index:300;align-items:flex-end;justify-content:center}
+.soft-wall-bg.vis{display:flex}
+.soft-wall{background:var(--white);width:100%;max-width:720px;border-top:3px solid var(--black);padding:24px 24px 32px}
+.soft-wall-drag{width:36px;height:3px;background:var(--black);margin:0 auto 18px}
+.soft-wall-ico{font-size:24px;margin-bottom:10px}
+.soft-wall-title{font-size:18px;font-weight:900;text-transform:uppercase;letter-spacing:-0.01em;margin-bottom:6px}
+.soft-wall-sub{font-size:12px;font-weight:500;color:var(--muted);line-height:1.6;margin-bottom:20px}
+.soft-wall-btns{display:flex;flex-direction:column;gap:8px}
+.sw-btn-sign{background:var(--black);color:var(--white);border:2px solid var(--black);padding:14px;font-family:'Inter',sans-serif;font-size:11px;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;width:100%}
+.sw-btn-guest{background:var(--white);color:var(--black);border:2px solid var(--black);padding:12px;font-family:'Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;width:100%;color:var(--muted)}
+
+/* User pill in hero */
+.hero-user-pill{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);padding:5px 12px;margin-top:14px;cursor:pointer}
+.hero-user-pill-dot{width:7px;height:7px;border-radius:50%;background:var(--green)}
+.hero-user-pill-txt{font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.75)}
+.hero-user-pill-sign{font-size:9px;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;color:var(--green);cursor:pointer;text-decoration:underline;margin-top:10px;display:inline-block}
+
 @media(max-width:480px){
-  .hero{padding:24px 16px 20px}
-  .cal-wrap,.enc-body,.ms-section{padding-left:16px;padding-right:16px}
-  .tab-btn{padding:12px 14px;font-size:10px}
+  .auth-landing,.auth-form-screen,.auth-success{padding:32px 20px 24px}
+  .otp-digits{gap:7px}
+  .otp-digit{width:44px;height:56px;font-size:20px}
 }
 </style>
 </head>
@@ -223,7 +303,87 @@ body{font-family:'Inter',sans-serif;background:var(--gray);color:var(--black);mi
 
 <div class="site-wrap">
 
-  <!-- HERO -->
+<!-- ══════════════════════════════════════════════════════
+     AUTH OVERLAY
+══════════════════════════════════════════════════════ -->
+<div id="auth-wrap">
+
+  <!-- LANDING -->
+  <div id="auth-landing" class="auth-landing">
+    <div class="auth-logo-block">
+      <div class="auth-logo-ico">
+        <svg viewBox="0 0 100 100"><circle cx="50" cy="55" r="28" fill="#34C759"/><polygon points="50,22 54,34 67,34 57,42 61,55 50,47 39,55 43,42 33,34 46,34" fill="#FFD60A"/></svg>
+      </div>
+      <div class="auth-headline">Balcony<br><span>Harvest.</span></div>
+      <div class="auth-sub">Your London balcony garden assistant. Save your plants, track your progress, and never miss a harvest.</div>
+    </div>
+
+    <div class="auth-features">
+      <div class="auth-feat">
+        <div class="auth-feat-ico">📅</div>
+        <div><div class="auth-feat-txt">Smart Calendar</div><div class="auth-feat-sub">AI-predicted milestones for every plant</div></div>
+      </div>
+      <div class="auth-feat">
+        <div class="auth-feat-ico">☁️</div>
+        <div><div class="auth-feat-txt">Cloud Sync</div><div class="auth-feat-sub">Your garden saved across all devices</div></div>
+      </div>
+      <div class="auth-feat">
+        <div class="auth-feat-ico">📖</div>
+        <div><div class="auth-feat-txt">28+ Plants</div><div class="auth-feat-sub">RHS-verified care guides for London growers</div></div>
+      </div>
+    </div>
+
+    <div class="auth-btn-stack">
+      <button class="auth-btn auth-btn-apple" onclick="showAuthForm('apple')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        Continue with Apple
+      </button>
+      <button class="auth-btn auth-btn-google" onclick="showAuthForm('google')">
+        <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+        Continue with Google
+      </button>
+    </div>
+    <div class="auth-guest" onclick="enterGuestMode()">Continue as guest — explore first</div>
+  </div>
+
+  <!-- SUCCESS -->
+  <div id="auth-success" class="auth-success" style="display:none">
+    <div class="auth-success-ico">🌱</div>
+    <div class="auth-success-title">Welcome back!</div>
+    <div class="auth-success-sub" id="auth-success-sub">Your garden is synced. All your plants, progress, and tasks are ready.</div>
+    <div class="auth-success-uid" id="auth-success-uid"></div>
+    <button class="auth-submit" style="max-width:280px" onclick="completeAuth()">Open My Garden →</button>
+  </div>
+
+</div><!-- /auth-wrap -->
+
+<!-- SOFT WALL — shown when guest tries to sow a second plant -->
+<div class="soft-wall-bg" id="soft-wall-bg">
+  <div class="soft-wall">
+    <div class="soft-wall-drag"></div>
+    <div class="soft-wall-ico">☁️</div>
+    <div class="soft-wall-title">Save your garden</div>
+    <div class="soft-wall-sub">You've added your first plant as a guest. Sign in to save your progress, track more plants, and sync across devices — it only takes 10 seconds.</div>
+    <div class="soft-wall-btns">
+      <button class="sw-btn-sign" onclick="closeSoftWall(true)">Sign in to continue →</button>
+      <button class="sw-btn-guest" onclick="closeSoftWall(false)">Not now, stay as guest</button>
+    </div>
+  </div>
+</div>
+
+<!-- SIGN OUT CONFIRMATION MODAL -->
+<div id="signout-modal" style="display:none;position:fixed;inset:0;background:rgba(10,10,10,0.6);z-index:600;align-items:center;justify-content:center;padding:24px">
+  <div style="background:var(--white);border:2px solid var(--black);padding:28px 24px;max-width:340px;width:100%">
+    <div style="font-size:14px;font-weight:900;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:8px">Sign out?</div>
+    <div style="font-size:12px;font-weight:500;color:var(--muted);line-height:1.6;margin-bottom:22px">Signed in as <strong id="signout-email" style="color:var(--black)"></strong>.<br><br>Your plants, progress and tasks are <strong style="color:var(--green)">saved to your account</strong>. When you sign back in with the same email, everything will be exactly as you left it.</div>
+    <div style="display:flex;gap:8px">
+      <button onclick="cancelSignOut()" style="flex:1;padding:12px;border:2px solid var(--black);background:var(--white);font-family:'Inter',sans-serif;font-size:10px;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer">Cancel</button>
+      <button onclick="confirmSignOut()" style="flex:1;padding:12px;border:none;background:var(--black);color:var(--white);font-family:'Inter',sans-serif;font-size:10px;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer">Sign Out</button>
+    </div>
+  </div>
+</div>
+
+
   <div class="hero">
     <div class="hero-deco"></div>
     <div class="hero-deco2"></div>
@@ -236,6 +396,7 @@ body{font-family:'Inter',sans-serif;background:var(--gray);color:var(--black);mi
       <span class="hero-tag">✦ RHS Verified</span>
       <span class="hero-tag">🇬🇧 London Climate</span>
     </div>
+    <div id="hero-user-area" style="margin-top:12px"></div>
   </div>
 
   <!-- SOURCE BAR -->
@@ -288,7 +449,10 @@ body{font-family:'Inter',sans-serif;background:var(--gray);color:var(--black);mi
     <div class="cal-wrap">
       <div class="cal-nav">
         <button class="cal-nav-btn" onclick="changeMonth(-1)" aria-label="Previous month">‹</button>
-        <span class="cal-month" id="cal-title">April 2026</span>
+        <div style="display:flex;align-items:center;gap:8px">
+          <select id="cal-month-select" onchange="jumpToDate()" style="font-family:'Inter',sans-serif;font-size:13px;font-weight:700;border:2px solid var(--black);padding:5px 8px;background:var(--white);cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;text-align:center"></select>
+          <select id="cal-year-select" onchange="jumpToDate()" style="font-family:'Inter',sans-serif;font-size:13px;font-weight:700;border:2px solid var(--black);padding:5px 8px;background:var(--white);cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;text-align:center"></select>
+        </div>
         <button class="cal-nav-btn" onclick="changeMonth(1)" aria-label="Next month">›</button>
       </div>
       <div class="dow-row">
@@ -355,6 +519,11 @@ body{font-family:'Inter',sans-serif;background:var(--gray);color:var(--black);mi
     </div>
     <div class="modal-no-results" id="modal-no-results">No match — press Enter or tap + Add to sow this plant</div>
     <div id="modal-added-msg"></div>
+    <!-- Existing sowings on this date — shown when plants already sown -->
+    <div id="modal-existing" style="display:none;margin-bottom:14px">
+      <div style="font-size:9px;font-weight:900;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Already sown on this date — tap to remove</div>
+      <div id="modal-existing-list"></div>
+    </div>
     <div class="picker-grid" id="picker-grid"></div>
     <button class="modal-btn" id="modal-btn" onclick="confirmSow()" disabled>Confirm Sowing →</button>
   </div>
@@ -395,31 +564,466 @@ const CAT_COLORS={
 };
 
 const KNOWN={
-  tomato:{name:'Tomato',sub:'Cherry · Balcony',cat:'fruit',svg:'tomato',sprout:10,water:1,harvest:60,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/tomatoes',r:[['Sowing Time','Late Feb to mid-Mar indoors; late Mar–Apr for outdoor crops'],['Sowing Temp','18–22°C — heated propagator or warm windowsill (RHS)'],['Pot Size','30–45cm wide minimum; prevents root stress and splitting'],['Transplant Trigger','Plant out once nights are reliably above 16°C']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','6–8 hrs direct sun; south-facing sheltered spot; rotate pot weekly'],['Watering','Daily in warm weather; twice daily in peak summer for containers'],['Feeding','High-potash liquid feed every 7 days once first truss sets'],['Side-shoots','Pinch out weekly for cordon varieties']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Pruning','Remove suckers growing between stem and branch'],['Pollination','Tap flowering trusses daily around midday to release pollen'],['Maturity','Fruit yields to gentle pressure; harvest Jul–Oct']]},{t:'🤝 Companions',src:'gardenuk.co.uk/companion-planting',r:[['Plant with','Basil (repels aphids), Marigold (deters whitefly), Borage (attracts pollinators)'],['Avoid','Fennel (allelopathic), Brassicas (compete for nutrients), Potatoes (shared blight)']]}]},
-  pepper:{name:'Pepper',sub:'Sweet Bell · Green',cat:'fruit',svg:'pepper',sprout:14,water:2,harvest:90,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/peppers',r:[['Sowing Time','Feb to early Mar indoors — peppers are slow, sow early'],['Sowing Temp','18–21°C in a heated propagator'],['Pot Size','25cm+ deep; pot on into 2–3 litre pots by May']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Full sun, 6+ hrs'],['Watering','Keep evenly moist; water at base, avoid leaves'],['Feeding','High-potash weekly once flowering begins']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['First flowers','Pinch off to strengthen the plant structure'],['Support','Stake when fruits develop — branches can snap']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Basil (repels aphids), Carrots'],['Avoid','Fennel (inhibits growth of most vegetables)']]}]},
-  eggplant:{name:'Eggplant',sub:'Aubergine · Classic Purple',cat:'fruit',svg:'eggplant',sprout:14,water:2,harvest:85,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/aubergines',r:[['Sowing Time','Feb to early Mar indoors — needs long warm season'],['Sowing Temp','21–27°C; requires heated propagator'],['Pot Size','30cm+ deep; heat-loving, needs rich soil']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Full sun, 8 hrs — more demanding than tomatoes'],['Watering','Consistent moisture; never allow to dry out or waterlog'],['Feeding','Balanced feed until flowering, then high-potash weekly']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Staking','Stake plants when 30cm tall'],['Fruit limit','Restrict to 4–5 fruits per plant for best UK size']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Basil (repels aphids), Tarragon'],['Avoid','Fennel, Brassicas (compete for nutrients)']]}]},
-  courgette:{name:'Courgette',sub:'Green Bush · Zucchini',cat:'fruit',svg:'courgette',sprout:5,water:1,harvest:50,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/courgettes',r:[['Sowing Time','Sow indoors mid–late spring; plant out after last frost'],['Sowing Temp','18–21°C; germination usually 5–7 days'],['Pot Size','Large container; compact/bush varieties best for balconies']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Warm, sunny, sheltered position'],['Watering','Water regularly and deeply; courgettes are thirsty'],['Harvesting','Pick every 2–3 days to keep plant producing; 3–4 fruits/week at peak']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Pollination','Hand-pollinate if few insects — transfer pollen with a brush'],['Marrow risk','Do not leave fruits — they quickly become marrows']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Nasturtiums (attract aphids away), Marigolds (deter pests)'],['Avoid','Potatoes (compete for space and nutrients)']]}]},
-  cucumber:{name:'Cucumber',sub:'Ridge · Outdoor',cat:'fruit',svg:'cucumber',sprout:6,water:1,harvest:55,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/cucumbers',r:[['Sowing Time','Sow indoors mid–late spring; plant out in early summer'],['Sowing Temp','20–25°C in a heated propagator'],['Pot Size','30cm+ deep; train vertically to save balcony space'],['Varieties','Choose outdoor/ridge varieties for balconies']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Full sun, sheltered from wind'],['Watering','Daily in warm weather — high moisture needs'],['Feeding','General liquid feed every 10–14 days; switch to high-potash when flowering']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Training','Pinch out growing tip above 6–8 leaves; tie in to canes'],['Harvest','Cut at 15–20cm; pick regularly to maintain cropping']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Beans, Dill, Sunflowers (provide shade)'],['Avoid','Sage, Potatoes (inhibit cucumber growth)']]}]},
-  strawberry:{name:'Strawberry',sub:'Everbearing · Alpine',cat:'fruit',svg:'strawberry',sprout:14,water:1,harvest:70,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/fruit/strawberries',r:[['Planting Time','Plant runners late summer/autumn; start seeds indoors Feb'],['Pot Size','20cm+ deep; hanging baskets and window boxes work well'],['Mulch','Straw under fruits prevents soil splash and slug damage']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','6+ hrs sun — essential for fruit sweetness'],['Watering','Consistently moist; avoid wetting crown to prevent rot'],['Feeding','High-potash liquid feed weekly once plants begin flowering']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Runners','Remove runners promptly to direct energy to fruiting'],['After harvest','Cut back old foliage after fruiting']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Borage (attracts pollinators), Thyme, Lettuce'],['Avoid','Brassicas (inhibit growth), Fennel (allelopathic)']]}]},
-  sweetcorn:{name:'Sweetcorn',sub:'F1 Sweet · Cob',cat:'fruit',svg:'sweetcorn',sprout:8,water:2,harvest:85,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/sweetcorn',r:[['Sowing Time','Sow indoors mid to late spring (Apr–May); germinate at 18–21°C'],['Plant out','After last frost (mid-May London); harden off 1–2 weeks first'],['Pot Size','40cm+ container; plant in a block not a row for pollination']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Full sun, sheltered'],['Watering','Generous, especially once tassels form at the top'],['Harvest','Cobs ripe from Aug; milky juice when pressing a kernel = ready']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Pollination','Block planting essential — wind transfers pollen from tassels to silks'],['Eat immediately','Sugars convert to starch within hours of picking']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Beans, Squash — classic Three Sisters combination'],['Avoid','Tomatoes, Brassicas (heavy competition)']]}]},
-  lettuce:{name:'Lettuce',sub:'Butterhead · Cut-and-Come-Again',cat:'leafy',svg:'lettuce',sprout:4,water:1,harvest:35,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/lettuce',r:[['Sowing Time','Mar–Sep outdoors; succession sow every 2–3 weeks (RHS)'],['Sowing Temp','10–20°C — germination fails above 25°C'],['Pot Depth','15–20cm; lettuce roots are shallow']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Full sun in spring/autumn; partial shade in summer to prevent bolting'],['Watering','Consistently moist — drought causes bitterness and bolting']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Harvesting','Pick outer leaves first (cut-and-come-again); plant keeps producing'],['Bolting','Remove flower heads immediately to delay bitterness']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Radish (fast-growing gap-filler), Carrots, Chives (deter aphids)'],['Avoid','Celery, Parsley (inhibit lettuce growth)']]}]},
-  spinach:{name:'Spinach',sub:'Baby Leaf · Perpetual',cat:'leafy',svg:'spinach',sprout:5,water:1,harvest:30,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/spinach',r:[['Sowing Time','Mar–May and Aug–Sep; succession sow every 3 weeks (RHS)'],['Sowing Temp','5–18°C — does not germinate well above 20°C'],['Pot Depth','15cm minimum; shallow roots tolerate small containers']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Partial shade tolerated in summer — helps prevent bolting'],['Watering','Consistently moist — dry spells cause rapid bolting']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Bolting','Shade in hot spells; remove flower spikes to delay bitterness'],['Harvesting','Pick outer leaves regularly from baby plants']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Strawberries (good use of space), Peas (fix nitrogen)'],['Avoid','Brassicas (attract same pests)']]}]},
-  kale:{name:'Kale',sub:'Curly · Dwarf',cat:'brassica',svg:'kale',sprout:6,water:2,harvest:60,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/kale',r:[['Sowing Time','Apr–Jun for autumn/winter harvest; some varieties Aug for spring'],['Sowing Temp','10–18°C; kale is hardy and tolerates frost once established'],['Pot Depth','30cm+ deep; kale has a substantial root system']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Full sun to partial shade — very adaptable'],['Watering','Keep moist; deep watering encourages deep roots'],['Feeding','High-nitrogen feed monthly to encourage leafy growth']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Harvesting','Pick outer leaves; leave crown intact to keep producing'],['Pest watch','Net against cabbage white butterflies — main balcony risk']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Dill (attracts predatory wasps), Mint (deters cabbage moths), Onions'],['Avoid','Tomatoes, other brassicas in same pot (disease build-up)']]}]},
-  carrot:{name:'Carrot',sub:'Nantes · Amsterdam Short',cat:'root',svg:'carrot',sprout:14,water:2,harvest:70,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/containers',r:[['Sowing Time','Feb onwards in containers (RHS recommends Nantes/Amsterdam for pots)'],['Sowing Temp','7–24°C; best 18–21°C. Can be slow: 10–21 days'],['Pot Depth','30cm+ with loose, stone-free compost'],['Cover','Fleece from April to exclude carrot fly — key London tip (RHS)']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','6 hrs sun; tolerates partial shade'],['Watering','Consistent moisture prevents forking and splitting'],['Thinning','8cm apart once 3cm tall (RHS containers guide); thin in evenings']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Carrot fly','Cover with fine mesh or fleece — main pest. Never thin in daytime'],['Harvest','Lift gently when shoulders visible at soil surface (June onwards)']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Onions (confuse carrot fly), Rosemary, Chives, Leeks'],['Avoid','Dill (reduces carrot growth when mature), Parsnip (same pest family)']]}]},
-  radish:{name:'Radish',sub:'Cherry Belle · Salad',cat:'root',svg:'radish',sprout:5,water:1,harvest:28,secs:[{t:'🌱 Planting Setup',src:'howto-grow.co.uk/vegetables/radishes',r:[['Sowing Time','Mar–Sep outdoors; succession sow every 2 weeks for continuous supply'],['Germination','4–7 days in spring warmth'],['Pot Depth','15cm is sufficient — radishes have shallow roots'],['Spacing','Sow 1.5cm deep; thin to 3–4cm apart once seedlings emerge']]},{t:'💧 Daily Care',src:'thrive.org.uk',r:[['Sunlight','Full sun for fastest growth; light shade in midsummer to prevent bolting'],['Watering','Evenly moist — dry soil causes woody, fiery roots'],['Feeding','Not needed — radishes grow too quickly to need fertiliser']]},{t:'✂️ Advanced Care',src:'howto-grow.co.uk',r:[['Harvest','Pull when golf-ball sized and firm; 3–6 weeks. Do not delay — they turn woody'],['Bolting','Pull immediately if plants flower — roots will be inedible']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Carrots (loosens soil, marks rows), Lettuce, Spinach'],['Avoid','Hyssop']]}]},
-  beetroot:{name:'Beetroot',sub:'Boltardy · Cylindra',cat:'root',svg:'beetroot',sprout:8,water:2,harvest:65,secs:[{t:'🌱 Planting Setup',src:'gardenersworld.com',r:[['Sowing Time','Apr–Jul outdoors direct; Feb under cover in modules'],['Sowing Temp','10–20°C; soak seeds 30 mins before sowing to aid germination'],['Pot Depth','25cm+; beetroot seeds are clusters — thin to one seedling per cluster'],['Harvest window','Jun–Oct (Gardeners\' World)']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Full sun preferred; tolerates partial shade'],['Watering','Even watering prevents woody, tough roots']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Thinning','Thin to 10cm apart; eat thinnings as baby leaves — nutritious'],['Harvest','Golf-ball to tennis-ball size; twist off tops rather than cutting']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Lettuce, Cabbage, Onions, Garlic'],['Avoid','Pole beans (inhibit beetroot growth)']]}]},
-  onion:{name:'Onion',sub:'Yellow Sets · Spring',cat:'bulb',svg:'onion',sprout:10,water:2,harvest:90,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/onions',r:[['Planting Time','Plant sets Mar–Apr (RHS April calendar: "Plant onions, shallots and garlic sets")'],['Pot Depth','20cm+; sets planted 10cm apart, tips just below soil surface'],['Soil','Well-drained, fertile compost; firm soil prevents sets being lifted by frost']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Full sun — essential for bulb development'],['Watering','When top 2cm of compost is dry; reduce as bulbs ripen'],['Feeding','High-potash feed in June to swell bulbs']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Harvest cue','Tops turn yellow and fall over — signals harvest time'],['Curing','Lift and dry in sun for 2–3 weeks before storing']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Carrots (onion scent confuses carrot fly), Chamomile, Lettuce'],['Avoid','Beans, Peas (allium compounds inhibit legume growth)']]}]},
-  garlic:{name:'Garlic',sub:'Softneck · Solent Wight',cat:'bulb',svg:'garlic',sprout:14,water:1,harvest:240,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/garlic',r:[['Planting Time','Oct–Dec for best results — garlic needs cold to form a good bulb (RHS)'],['Method','Plant cloves 2.5cm deep, 15cm apart, tip just below soil surface'],['Pot Depth','20–25cm minimum (RHS recommends 25cm for containers)'],['Soil','Well-drained compost with 20–30% grit or perlite for drainage']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','6–8 hrs direct sun daily'],['Watering','Minimal — water only during prolonged dry spells; overwatering causes rot']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Scapes','Remove flower scapes to direct energy to the bulb'],['Harvest','Jun–Aug when 1–2 leaves still green; lift gently — do not pull'],['Curing','Dry in a warm, airy place for 2–3 weeks before storing']]},{t:'🤝 Companions',src:'northernpolytunnels.co.uk/garlic',r:[['Plant with','Strawberries, Carrots, Beetroot, Lettuce, Roses (deters aphids and carrot fly)'],['Avoid','Beans, Peas (garlic inhibits legume growth)']]}]},
-  pea:{name:'Peas',sub:'Sugar Snap · Mangetout',cat:'pod',svg:'pea',sprout:6,water:1,harvest:55,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/peas',r:[['Sowing Time','Mar–May outdoors; 5cm deep, 4–5cm apart around container edge'],['Sowing Temp','10–18°C'],['Pot Depth','30cm+ wide and deep; provide canes, netting or trellis for climbing']]},{t:'💧 Daily Care',src:'thrive.org.uk',r:[['Sunlight','Full sun to partial shade'],['Watering','Consistent and generous, especially when flowering and podding'],['Feeding','Not usually needed — peas fix their own nitrogen']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Picking','Pick pods regularly — essential to keep plant producing'],['Support','Tie in tendrils as plant grows']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Carrots, Radish, Mint (deters aphids), Lettuce'],['Avoid','Garlic, Onions, Shallots (alliums inhibit pea growth)']]}]},
-  basil:{name:'Basil',sub:'Genovese · Sweet',cat:'herb',svg:'herb',sprout:5,water:1,harvest:30,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/herbs/basil',r:[['Sowing Time','Apr–Jun indoors; do not sow until frost risk has passed — very frost tender'],['Sowing Temp','18–22°C'],['Pot Size','15–20cm wide and deep'],['Position','Warm windowsill or sheltered south-facing spot']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','6+ hrs; warm south-facing position essential'],['Watering','Moist but never waterlogged; water at base, not leaves'],['Feeding','Balanced liquid feed every 2 weeks']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Pinching','Pinch out flower buds immediately to extend leaf harvest'],['Harvesting','Always pick from the top to encourage bushy growth']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Tomatoes (repels aphids & whitefly), Peppers'],['Avoid','Sage (inhibits basil growth)']]}]},
-  chilli:{name:'Chilli',sub:'Cayenne · Hot',cat:'fruit',svg:'pepper',sprout:10,water:2,harvest:90,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/chillies',r:[['Sowing Time','Jan–Mar indoors — chillies need a long season, sow early'],['Sowing Temp','21–25°C in a heated propagator'],['Pot Size','25–30cm deep'],['Position','Greenhouse or very sheltered south-facing balcony']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','8 hrs direct sun — more demanding than sweet peppers'],['Watering','Allow top soil to dry slightly between waterings'],['Feeding','High-potash weekly once fruits start forming']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Overwintering','Chillies can be overwintered indoors and regrown next year'],['Harvest','Pick regularly; fully ripe chillies are hotter than green ones']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Basil, Carrots, Marjoram'],['Avoid','Fennel, Brassicas']]}]},
-  mint:{name:'Mint',sub:'Spearmint · Peppermint',cat:'herb',svg:'herb',sprout:7,water:1,harvest:28,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/herbs/mint',r:[['Sowing Time','Sow indoors Mar–May; plant out after last frost'],['Best method','Buy plug plants — mint seeds are slow and unreliable'],['Pot Size','20cm+ — MUST be grown in a container to prevent invasive spreading']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Partial shade ideal — prevents wilting in heat'],['Watering','Keep moist; mint is thirsty'],['Feeding','Balanced liquid feed monthly']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Containment','Always grow in its own pot — mint is invasive if planted in open ground'],['Harvest','Cut stems regularly to prevent flowering and maintain bushy growth']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Tomatoes, Peas, Brassicas (strong scent deters pests)'],['Avoid','Parsley (competes for resources)']]}]},
-  rocket:{name:'Rocket',sub:'Wild · Salad Leaves',cat:'leafy',svg:'lettuce',sprout:4,water:1,harvest:25,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/rocket',r:[['Sowing Time','Mar–Sep outdoors; succession sow every 2–3 weeks'],['Sowing Temp','10–18°C; avoid peak summer — bolts quickly in heat'],['Pot Depth','15cm minimum'],['Spacing','Thin to 15cm apart or grow as cut-and-come-again']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Partial shade in summer essential to delay bolting'],['Watering','Keep moist; drought causes rapid bolting and bitterness']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Harvesting','Cut leaves when 7–10cm long; do not pull whole plant'],['Bolting','Shade in hot weather; remove flowers to prolong harvest']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Lettuce, Radish, Carrots'],['Avoid','Brassicas (same pest family — cabbage white butterfly)']]}]},
-  'bok choy':{name:'Bok Choy',sub:'Pak Choi · Asian Green',cat:'brassica',svg:'kale',sprout:5,water:1,harvest:35,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/oriental-greens',r:[['Sowing Time','Mar–Apr or Aug–Sep (avoids peak heat and bolting risk)'],['Sowing Temp','10–20°C'],['Pot Depth','20cm+'],['Spacing','Thin to 15–20cm apart']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Partial shade in summer; full sun in spring and autumn'],['Watering','Consistently moist — drought causes bolting'],['Feeding','Nitrogen-rich feed for leafy growth']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Harvesting','Cut at base or harvest outer leaves for cut-and-come-again'],['Bolting','Avoid sowing Jun–Jul — heat causes rapid bolting']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Celery, Dill, Mint'],['Avoid','Tomatoes, Strawberries (different growing conditions)']]}]},
-  fennel:{name:'Florence Fennel',sub:'Bulbing · Sweet Anise',cat:'root',svg:'generic',sprout:10,water:2,harvest:70,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/florence-fennel',r:[['Sowing Time','May–Jul direct sow; avoid early sowing — cold triggers bolting'],['Sowing Temp','15–20°C'],['Pot Depth','30cm+ for bulb development'],['Note','Does not transplant well — direct sow into final container']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Full sun, sheltered from wind'],['Watering','Regular and even — irregular watering causes bolting'],['Feeding','Balanced liquid feed monthly']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Earthing up','Mound soil around bulb when golf-ball sized to blanch and sweeten'],['Harvest','When bulb is 7–10cm across; harvest before it bolts']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Keep isolated — fennel is allelopathic to most plants'],['Avoid','Tomatoes, Peppers, Beans, most vegetables (allelopathic — grow in isolation)']]}]},
-  shiso:{name:'Shiso',sub:'Perilla · Red & Green',cat:'herb',svg:'herb',sprout:7,water:1,harvest:35,secs:[{t:'🌱 Planting Setup',src:'gardenersworld.com',r:[['Sowing Time','Apr–May indoors; plant out after last frost (mid-May London)'],['Sowing Temp','18–22°C; seeds need light to germinate — do not cover'],['Pot Size','20cm+ wide and deep']]},{t:'💧 Daily Care',src:'gardenersworld.com',r:[['Sunlight','Full sun to partial shade; tolerates London summers well'],['Watering','Keep moist but well-drained; water at base'],['Feeding','Balanced liquid feed every 2–3 weeks']]},{t:'✂️ Advanced Care',src:'gardenersworld.com',r:[['Pinching','Pinch out flower spikes to extend leafy harvest'],['Harvesting','Pick young leaves regularly; both green and red varieties edible'],['Self-seeding','Allow a few plants to set seed — shiso self-seeds readily in sheltered spots']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Tomatoes, Aubergines, Cucumbers'],['Avoid','Fennel (allelopathic to herbs)']]}]},
-  'spring onion':{name:'Spring Onion',sub:'Salad Onion · Scallion',cat:'bulb',svg:'onion',sprout:7,water:1,harvest:42,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/spring-onions',r:[['Sowing Time','Mar–Aug outdoors; succession sow every 3 weeks'],['Sowing Temp','10–20°C'],['Pot Depth','15cm minimum'],['Spacing','Sow thinly in rows; thin to 1cm apart (no need for wider spacing)']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Full sun to partial shade'],['Watering','Keep moist; consistent moisture'],['Feeding','Not usually needed']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Harvesting','Pull when stems are pencil-thick — around 6 weeks from sowing'],['Succession','Sow every 3 weeks for a continuous supply through spring–autumn']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Carrots (confuse carrot fly), Lettuce'],['Avoid','Beans, Peas (alliums inhibit legumes)']]}]},
-  chard:{name:'Swiss Chard',sub:'Rainbow · Silverbeet',cat:'leafy',svg:'spinach',sprout:7,water:1,harvest:35,secs:[{t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/chard',r:[['Sowing Time','Apr–Jul outdoors; Apr for summer harvest, Jul for autumn/winter'],['Sowing Temp','10–18°C'],['Pot Depth','20cm+'],['Spacing','Thin to 30cm apart for full plants; 5cm for baby leaves']]},{t:'💧 Daily Care',src:'rhs.org.uk',r:[['Sunlight','Full sun to partial shade; very adaptable'],['Watering','Keep moist; drought-tolerant once established'],['Feeding','Nitrogen-rich feed for lush leafy growth']]},{t:'✂️ Advanced Care',src:'rhs.org.uk',r:[['Harvesting','Pick outer leaves from each plant — cut-and-come-again'],['Frost hardy','Tolerates light frosts — one of the most resilient balcony crops']]},{t:'🤝 Companions',src:'gardenuk.co.uk',r:[['Plant with','Beans, Brassicas, Lettuce'],['Avoid','Beets (same family — risk of shared disease)']]}]},
+  tomato:{name:'Tomato',sub:'Cherry · Balcony',cat:'fruit',svg:'tomato',sprout:10,water:1,harvest:60,secs:[
+    {t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/tomatoes',r:[
+      ['Sowing Time','Late Feb to mid-Mar indoors; late Mar–Apr for outdoor crops'],
+      ['Sowing Temp','18–22°C — heated propagator or warm windowsill (RHS)'],
+      ['Pot Size','30–45cm wide minimum; prevents root stress and splitting'],
+      ['Soil','Rich, moisture-retentive peat-free compost; add perlite for drainage. Slightly acidic pH 6.0–6.8'],
+      ['Transplant Trigger','Plant out once nights are reliably above 16°C']]},
+    {t:'💧 Daily Care',src:'rhs.org.uk',r:[
+      ['Sunlight','6–8 hrs direct sun; south-facing sheltered spot; rotate pot weekly'],
+      ['Watering','Daily in warm weather; twice daily in peak summer for containers'],
+      ['Feeding','High-potash liquid feed every 7 days once first truss sets'],
+      ['Side-shoots','Pinch out weekly for cordon varieties']]},
+    {t:'✂️ Advanced Care',src:'rhs.org.uk',r:[
+      ['Pruning','Remove suckers growing between stem and branch'],
+      ['Pollination','Tap flowering trusses daily around midday to release pollen'],
+      ['Days to Maturity','60–80 days from transplant; 100–120 days from sowing. Cherry varieties are fastest'],
+      ['Harvest Cue','Fruit yields to gentle pressure and is fully coloured; harvest Jul–Oct']]},
+    {t:'🤝 Companions',src:'gardenuk.co.uk/companion-planting',r:[
+      ['Plant with','Basil (repels aphids), Marigold (deters whitefly), Borage (attracts pollinators)'],
+      ['Avoid','Fennel (allelopathic), Brassicas (compete for nutrients), Potatoes (shared blight)']]}]},
+
+  pepper:{name:'Pepper',sub:'Sweet Bell · Green',cat:'fruit',svg:'pepper',sprout:14,water:2,harvest:90,secs:[
+    {t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/peppers',r:[
+      ['Sowing Time','Feb to early Mar indoors — peppers are slow, sow early'],
+      ['Sowing Temp','18–21°C in a heated propagator'],
+      ['Pot Size','25cm+ deep; pot on into 2–3 litre pots by May'],
+      ['Soil','Rich, well-draining peat-free compost. pH 6.0–6.8. Avoid waterlogged soil']]},
+    {t:'💧 Daily Care',src:'rhs.org.uk',r:[
+      ['Sunlight','Full sun, 6+ hrs'],
+      ['Watering','Keep evenly moist; water at base, avoid leaves'],
+      ['Feeding','High-potash weekly once flowering begins']]},
+    {t:'✂️ Advanced Care',src:'rhs.org.uk',r:[
+      ['First flowers','Pinch off to strengthen the plant structure'],
+      ['Support','Stake when fruits develop — branches can snap'],
+      ['Days to Maturity','90–120 days from transplant (green); add 2–3 weeks for red/yellow ripening'],
+      ['Harvest Cue','Firm, glossy skin; green peppers can be picked early, coloured ones need longer']]},
+    {t:'🤝 Companions',src:'gardenuk.co.uk',r:[
+      ['Plant with','Basil (repels aphids), Carrots'],
+      ['Avoid','Fennel (inhibits growth of most vegetables)']]}]},
+
+  eggplant:{name:'Eggplant',sub:'Aubergine · Classic Purple',cat:'fruit',svg:'eggplant',sprout:14,water:2,harvest:85,secs:[
+    {t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/aubergines',r:[
+      ['Sowing Time','Feb to early Mar indoors — needs long warm season'],
+      ['Sowing Temp','21–27°C; requires heated propagator'],
+      ['Pot Size','30cm+ deep; heat-loving, needs rich soil'],
+      ['Soil','Rich, well-draining compost with added organic matter. pH 5.5–6.5. Warm soil essential']]},
+    {t:'💧 Daily Care',src:'rhs.org.uk',r:[
+      ['Sunlight','Full sun, 8 hrs — more demanding than tomatoes'],
+      ['Watering','Consistent moisture; never allow to dry out or waterlog'],
+      ['Feeding','Balanced feed until flowering, then high-potash weekly']]},
+    {t:'✂️ Advanced Care',src:'rhs.org.uk',r:[
+      ['Staking','Stake plants when 30cm tall'],
+      ['Fruit limit','Restrict to 4–5 fruits per plant for best UK size'],
+      ['Days to Maturity','80–100 days from transplant; 120–150 days from sowing'],
+      ['Harvest Cue','Skin is shiny and firm; a dull skin means overripe. Pick before fully mature for best flavour']]},
+    {t:'🤝 Companions',src:'gardenuk.co.uk',r:[
+      ['Plant with','Basil (repels aphids), Tarragon'],
+      ['Avoid','Fennel, Brassicas (compete for nutrients)']]}]},
+
+  courgette:{name:'Courgette',sub:'Green Bush · Zucchini',cat:'fruit',svg:'courgette',sprout:5,water:1,harvest:50,secs:[
+    {t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/courgettes',r:[
+      ['Sowing Time','Sow indoors mid–late spring; plant out after last frost'],
+      ['Sowing Temp','18–21°C; germination usually 5–7 days'],
+      ['Pot Size','Large container; compact/bush varieties best for balconies'],
+      ['Soil','Rich, moisture-retentive compost with added garden compost. pH 6.0–7.0. Hungrier than most veg']]},
+    {t:'💧 Daily Care',src:'rhs.org.uk',r:[
+      ['Sunlight','Warm, sunny, sheltered position'],
+      ['Watering','Water regularly and deeply; courgettes are thirsty'],
+      ['Harvesting','Pick every 2–3 days to keep plant producing; 3–4 fruits/week at peak']]},
+    {t:'✂️ Advanced Care',src:'rhs.org.uk',r:[
+      ['Pollination','Hand-pollinate if few insects — transfer pollen with a brush'],
+      ['Marrow risk','Do not leave fruits — they quickly become marrows'],
+      ['Days to Maturity','40–55 days from transplant; around 50–60 days from direct sow'],
+      ['Harvest Cue','Harvest at 10–15cm long for best flavour and texture. Check daily in peak season']]},
+    {t:'🤝 Companions',src:'gardenuk.co.uk',r:[
+      ['Plant with','Nasturtiums (attract aphids away), Marigolds (deter pests)'],
+      ['Avoid','Potatoes (compete for space and nutrients)']]}]},
+
+  cucumber:{name:'Cucumber',sub:'Ridge · Outdoor',cat:'fruit',svg:'cucumber',sprout:6,water:1,harvest:55,secs:[
+    {t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/cucumbers',r:[
+      ['Sowing Time','Sow indoors mid–late spring; plant out in early summer'],
+      ['Sowing Temp','20–25°C in a heated propagator'],
+      ['Pot Size','30cm+ deep; train vertically to save balcony space'],
+      ['Soil','Rich, moisture-retentive, well-draining compost. pH 6.0–7.0. Add organic matter for best results'],
+      ['Varieties','Choose outdoor/ridge varieties for balconies']]},
+    {t:'💧 Daily Care',src:'rhs.org.uk',r:[
+      ['Sunlight','Full sun, sheltered from wind'],
+      ['Watering','Daily in warm weather — high moisture needs'],
+      ['Feeding','General liquid feed every 10–14 days; switch to high-potash when flowering']]},
+    {t:'✂️ Advanced Care',src:'rhs.org.uk',r:[
+      ['Training','Pinch out growing tip above 6–8 leaves; tie in to canes'],
+      ['Days to Maturity','50–70 days from transplant; mini varieties are faster'],
+      ['Harvest Cue','Cut at 15–20cm; pick regularly — leaving fruits on stops the plant producing']]},
+    {t:'🤝 Companions',src:'gardenuk.co.uk',r:[
+      ['Plant with','Beans, Dill, Sunflowers (provide shade)'],
+      ['Avoid','Sage, Potatoes (inhibit cucumber growth)']]}]},
+
+  strawberry:{name:'Strawberry',sub:'Everbearing · Alpine',cat:'fruit',svg:'strawberry',sprout:14,water:1,harvest:70,secs:[
+    {t:'🌱 Planting Setup',src:'rhs.org.uk/fruit/strawberries',r:[
+      ['Planting Time','Plant runners late summer/autumn; start seeds indoors Feb'],
+      ['Pot Size','20cm+ deep; hanging baskets and window boxes work well'],
+      ['Soil','Slightly acidic, fertile, well-draining compost. pH 6.0–6.5. Avoid alkaline or waterlogged soil'],
+      ['Mulch','Straw under fruits prevents soil splash and slug damage']]},
+    {t:'💧 Daily Care',src:'rhs.org.uk',r:[
+      ['Sunlight','6+ hrs sun — essential for fruit sweetness'],
+      ['Watering','Consistently moist; avoid wetting crown to prevent rot'],
+      ['Feeding','High-potash liquid feed weekly once plants begin flowering']]},
+    {t:'✂️ Advanced Care',src:'rhs.org.uk',r:[
+      ['Runners','Remove runners promptly to direct energy to fruiting'],
+      ['After harvest','Cut back old foliage after fruiting'],
+      ['Days to Maturity','60–90 days from planting runners; everbearing varieties fruit repeatedly May–Oct'],
+      ['Harvest Cue','Fully red with no white shoulders; slight give when pressed gently. Pick with the green stalk attached']]},
+    {t:'🤝 Companions',src:'gardenuk.co.uk',r:[
+      ['Plant with','Borage (attracts pollinators), Thyme, Lettuce'],
+      ['Avoid','Brassicas (inhibit growth), Fennel (allelopathic)']]}]},
+
+  sweetcorn:{name:'Sweetcorn',sub:'F1 Sweet · Cob',cat:'fruit',svg:'sweetcorn',sprout:8,water:2,harvest:85,secs:[
+    {t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/sweetcorn',r:[
+      ['Sowing Time','Sow indoors mid to late spring (Apr–May); germinate at 18–21°C'],
+      ['Plant out','After last frost (mid-May London); harden off 1–2 weeks first'],
+      ['Pot Size','40cm+ container; plant in a block not a row for pollination'],
+      ['Soil','Rich, moisture-retentive, well-draining compost. pH 6.0–6.8. Benefits from added organic matter']]},
+    {t:'💧 Daily Care',src:'rhs.org.uk',r:[
+      ['Sunlight','Full sun, sheltered'],
+      ['Watering','Generous, especially once tassels form at the top'],
+      ['Harvest','Cobs ripe from Aug; milky juice when pressing a kernel = ready']]},
+    {t:'✂️ Advanced Care',src:'rhs.org.uk',r:[
+      ['Pollination','Block planting essential — wind transfers pollen from tassels to silks'],
+      ['Days to Maturity','80–100 days from sowing; harvest Aug–Sep in London'],
+      ['Harvest Cue','Silks turn brown; press a kernel — if milky juice appears, ready. Eat immediately — sugars convert to starch within hours']]},
+    {t:'🤝 Companions',src:'gardenuk.co.uk',r:[
+      ['Plant with','Beans, Squash — classic Three Sisters combination'],
+      ['Avoid','Tomatoes, Brassicas (heavy competition)']]}]},
+
+  chilli:{name:'Chilli',sub:'Cayenne · Hot',cat:'fruit',svg:'pepper',sprout:10,water:2,harvest:90,secs:[
+    {t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/chillies',r:[
+      ['Sowing Time','Jan–Mar indoors — chillies need a long season, sow early'],
+      ['Sowing Temp','21–25°C in a heated propagator'],
+      ['Pot Size','25–30cm deep'],
+      ['Soil','Rich, well-draining compost. pH 6.0–6.8. Similar to sweet peppers but tolerates slightly drier conditions'],
+      ['Position','Greenhouse or very sheltered south-facing balcony']]},
+    {t:'💧 Daily Care',src:'rhs.org.uk',r:[
+      ['Sunlight','8 hrs direct sun — more demanding than sweet peppers'],
+      ['Watering','Allow top soil to dry slightly between waterings'],
+      ['Feeding','High-potash weekly once fruits start forming']]},
+    {t:'✂️ Advanced Care',src:'rhs.org.uk',r:[
+      ['Overwintering','Chillies can be overwintered indoors and regrown next year'],
+      ['Days to Maturity','90–120 days from transplant. Fully ripe coloured chillies take 2–3 weeks longer than green'],
+      ['Harvest Cue','Pick green for milder heat; wait for full colour (red/orange/yellow) for maximum heat and flavour']]},
+    {t:'🤝 Companions',src:'gardenuk.co.uk',r:[
+      ['Plant with','Basil, Carrots, Marjoram'],
+      ['Avoid','Fennel, Brassicas']]}]},
+
+  lettuce:{name:'Lettuce',sub:'Butterhead · Cut-and-Come-Again',cat:'leafy',svg:'lettuce',sprout:4,water:1,harvest:35,secs:[
+    {t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/lettuce',r:[
+      ['Sowing Time','Mar–Sep outdoors; succession sow every 2–3 weeks (RHS)'],
+      ['Sowing Temp','10–20°C — germination fails above 25°C'],
+      ['Pot Depth','15–20cm; lettuce roots are shallow'],
+      ['Soil','Moisture-retentive, fertile, well-draining compost. pH 6.0–7.0. Tolerates most soil types but hates waterlogging']]},
+    {t:'💧 Daily Care',src:'rhs.org.uk',r:[
+      ['Sunlight','Full sun in spring/autumn; partial shade in summer to prevent bolting'],
+      ['Watering','Consistently moist — drought causes bitterness and bolting']]},
+    {t:'✂️ Advanced Care',src:'rhs.org.uk',r:[
+      ['Harvesting','Pick outer leaves first (cut-and-come-again); plant keeps producing'],
+      ['Bolting','Remove flower heads immediately to delay bitterness'],
+      ['Days to Maturity','30–45 days for loose-leaf varieties; 60–70 days for hearting types from sowing'],
+      ['Harvest Cue','Loose-leaf: harvest from 10cm tall. Hearting: firm head that resists squeezing']]},
+    {t:'🤝 Companions',src:'gardenuk.co.uk',r:[
+      ['Plant with','Radish (fast-growing gap-filler), Carrots, Chives (deter aphids)'],
+      ['Avoid','Celery, Parsley (inhibit lettuce growth)']]}]},
+
+  spinach:{name:'Spinach',sub:'Baby Leaf · Perpetual',cat:'leafy',svg:'spinach',sprout:5,water:1,harvest:30,secs:[
+    {t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/spinach',r:[
+      ['Sowing Time','Mar–May and Aug–Sep; succession sow every 3 weeks (RHS)'],
+      ['Sowing Temp','5–18°C — does not germinate well above 20°C'],
+      ['Pot Depth','15cm minimum; shallow roots tolerate small containers'],
+      ['Soil','Moisture-retentive, nitrogen-rich compost. pH 6.5–7.0. Slightly alkaline preferred; acidic soil causes poor growth']]},
+    {t:'💧 Daily Care',src:'rhs.org.uk',r:[
+      ['Sunlight','Partial shade tolerated in summer — helps prevent bolting'],
+      ['Watering','Consistently moist — dry spells cause rapid bolting']]},
+    {t:'✂️ Advanced Care',src:'rhs.org.uk',r:[
+      ['Bolting','Shade in hot spells; remove flower spikes to delay bitterness'],
+      ['Days to Maturity','20–40 days for baby leaf; 40–50 days for full leaves from sowing'],
+      ['Harvest Cue','Pick outer leaves when 5–8cm long. Baby leaves are most tender. Plant keeps cropping until it bolts']]},
+    {t:'🤝 Companions',src:'gardenuk.co.uk',r:[
+      ['Plant with','Strawberries (good use of space), Peas (fix nitrogen)'],
+      ['Avoid','Brassicas (attract same pests)']]}]},
+
+  kale:{name:'Kale',sub:'Curly · Dwarf',cat:'brassica',svg:'kale',sprout:6,water:2,harvest:60,secs:[
+    {t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/kale',r:[
+      ['Sowing Time','Apr–Jun for autumn/winter harvest; some varieties Aug for spring'],
+      ['Sowing Temp','10–18°C; kale is hardy and tolerates frost once established'],
+      ['Pot Depth','30cm+ deep; kale has a substantial root system'],
+      ['Soil','Firm, fertile, well-draining compost. pH 6.5–7.5. Prefers slightly alkaline soil; add lime if too acidic']]},
+    {t:'💧 Daily Care',src:'rhs.org.uk',r:[
+      ['Sunlight','Full sun to partial shade — very adaptable'],
+      ['Watering','Keep moist; deep watering encourages deep roots'],
+      ['Feeding','High-nitrogen feed monthly to encourage leafy growth']]},
+    {t:'✂️ Advanced Care',src:'rhs.org.uk',r:[
+      ['Harvesting','Pick outer leaves; leave crown intact to keep producing'],
+      ['Pest watch','Net against cabbage white butterflies — main balcony risk'],
+      ['Days to Maturity','60–90 days from sowing; baby kale leaves ready in 30–40 days'],
+      ['Harvest Cue','Pick young tender leaves for best flavour. Frost actually sweetens kale — harvest after first frost for best taste']]},
+    {t:'🤝 Companions',src:'gardenuk.co.uk',r:[
+      ['Plant with','Dill (attracts predatory wasps), Mint (deters cabbage moths), Onions'],
+      ['Avoid','Tomatoes, other brassicas in same pot (disease build-up)']]}]},
+
+  carrot:{name:'Carrot',sub:'Nantes · Amsterdam Short',cat:'root',svg:'carrot',sprout:14,water:2,harvest:70,secs:[
+    {t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/containers',r:[
+      ['Sowing Time','Feb onwards in containers (RHS recommends Nantes/Amsterdam for pots)'],
+      ['Sowing Temp','7–24°C; best 18–21°C. Can be slow: 10–21 days'],
+      ['Pot Depth','30cm+ with loose, stone-free compost'],
+      ['Soil','Light, sandy, stone-free, well-draining compost. pH 6.0–6.8. Avoid freshly manured soil — causes forking. No lumps or stones'],
+      ['Cover','Fleece from April to exclude carrot fly — key London tip (RHS)']]},
+    {t:'💧 Daily Care',src:'rhs.org.uk',r:[
+      ['Sunlight','6 hrs sun; tolerates partial shade'],
+      ['Watering','Consistent moisture prevents forking and splitting'],
+      ['Thinning','8cm apart once 3cm tall (RHS containers guide); thin in evenings']]},
+    {t:'✂️ Advanced Care',src:'rhs.org.uk',r:[
+      ['Carrot fly','Cover with fine mesh or fleece — main pest. Never thin in daytime'],
+      ['Days to Maturity','60–80 days from sowing for early varieties; 70–90 days for maincrop'],
+      ['Harvest Cue','Shoulders visible at soil surface, usually 1–2cm across. Lift gently with a fork — do not pull by tops']]},
+    {t:'🤝 Companions',src:'gardenuk.co.uk',r:[
+      ['Plant with','Onions (confuse carrot fly), Rosemary, Chives, Leeks'],
+      ['Avoid','Dill (reduces carrot growth when mature), Parsnip (same pest family)']]}]},
+
+  radish:{name:'Radish',sub:'Cherry Belle · Salad',cat:'root',svg:'radish',sprout:5,water:1,harvest:28,secs:[
+    {t:'🌱 Planting Setup',src:'howto-grow.co.uk/vegetables/radishes',r:[
+      ['Sowing Time','Mar–Sep outdoors; succession sow every 2 weeks for continuous supply'],
+      ['Germination','4–7 days in spring warmth'],
+      ['Pot Depth','15cm is sufficient — radishes have shallow roots'],
+      ['Soil','Light, well-draining, loose compost. pH 6.0–7.0. Avoid heavy or freshly manured soil — causes forking'],
+      ['Spacing','Sow 1.5cm deep; thin to 3–4cm apart once seedlings emerge']]},
+    {t:'💧 Daily Care',src:'thrive.org.uk',r:[
+      ['Sunlight','Full sun for fastest growth; light shade in midsummer to prevent bolting'],
+      ['Watering','Evenly moist — dry soil causes woody, fiery roots'],
+      ['Feeding','Not needed — radishes grow too quickly to need fertiliser']]},
+    {t:'✂️ Advanced Care',src:'howto-grow.co.uk',r:[
+      ['Days to Maturity','21–30 days for salad radishes; some varieties ready in just 23 days from sowing'],
+      ['Harvest Cue','Pull when golf-ball sized and firm. Check by gently pressing — crisp with no give. Do not delay or they turn woody and hollow']]},
+    {t:'🤝 Companions',src:'gardenuk.co.uk',r:[
+      ['Plant with','Carrots (loosens soil, marks rows), Lettuce, Spinach'],
+      ['Avoid','Hyssop']]}]},
+
+  beetroot:{name:'Beetroot',sub:'Boltardy · Cylindra',cat:'root',svg:'beetroot',sprout:8,water:2,harvest:65,secs:[
+    {t:'🌱 Planting Setup',src:'gardenersworld.com',r:[
+      ['Sowing Time','Apr–Jul outdoors direct; Feb under cover in modules'],
+      ['Sowing Temp','10–20°C; soak seeds 30 mins before sowing to aid germination'],
+      ['Pot Depth','25cm+; beetroot seeds are clusters — thin to one seedling per cluster'],
+      ['Soil','Deep, well-draining, fertile compost. pH 6.5–7.5. Avoid acidic soil — add lime if needed. Does not tolerate waterlogging'],
+      ['Harvest window','Jun–Oct (Gardeners\' World)']]},
+    {t:'💧 Daily Care',src:'rhs.org.uk',r:[
+      ['Sunlight','Full sun preferred; tolerates partial shade'],
+      ['Watering','Even watering prevents woody, tough roots']]},
+    {t:'✂️ Advanced Care',src:'rhs.org.uk',r:[
+      ['Thinning','Thin to 10cm apart; eat thinnings as baby leaves — nutritious'],
+      ['Days to Maturity','50–70 days from sowing; baby beets ready from 40 days'],
+      ['Harvest Cue','Golf-ball to tennis-ball size (5–7cm across). Twist off tops rather than cutting to prevent bleeding']]},
+    {t:'🤝 Companions',src:'gardenuk.co.uk',r:[
+      ['Plant with','Lettuce, Cabbage, Onions, Garlic'],
+      ['Avoid','Pole beans (inhibit beetroot growth)']]}]},
+
+  onion:{name:'Onion',sub:'Yellow Sets · Spring',cat:'bulb',svg:'onion',sprout:10,water:2,harvest:90,secs:[
+    {t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/onions',r:[
+      ['Planting Time','Plant sets Mar–Apr (RHS April calendar: "Plant onions, shallots and garlic sets")'],
+      ['Pot Depth','20cm+; sets planted 10cm apart, tips just below soil surface'],
+      ['Soil','Well-drained, fertile, firm compost. pH 6.0–7.0. Avoid freshly manured or loose soil — bulbs need resistance to swell properly']]},
+    {t:'💧 Daily Care',src:'rhs.org.uk',r:[
+      ['Sunlight','Full sun — essential for bulb development'],
+      ['Watering','When top 2cm of compost is dry; reduce as bulbs ripen'],
+      ['Feeding','High-potash feed in June to swell bulbs']]},
+    {t:'✂️ Advanced Care',src:'rhs.org.uk',r:[
+      ['Harvest cue','Tops turn yellow and fall over — signals harvest time'],
+      ['Days to Maturity','90–120 days from sets; spring-planted sets harvest Aug–Sep'],
+      ['Curing','Lift and dry in sun for 2–3 weeks before storing']]},
+    {t:'🤝 Companions',src:'gardenuk.co.uk',r:[
+      ['Plant with','Carrots (onion scent confuses carrot fly), Chamomile, Lettuce'],
+      ['Avoid','Beans, Peas (allium compounds inhibit legume growth)']]}]},
+
+  garlic:{name:'Garlic',sub:'Softneck · Solent Wight',cat:'bulb',svg:'garlic',sprout:14,water:1,harvest:240,secs:[
+    {t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/garlic',r:[
+      ['Planting Time','Oct–Dec for best results — garlic needs cold to form a good bulb (RHS)'],
+      ['Method','Plant cloves 2.5cm deep, 15cm apart, tip just below soil surface'],
+      ['Pot Depth','20–25cm minimum (RHS recommends 25cm for containers)'],
+      ['Soil','Well-drained, gritty compost with 20–30% perlite or grit. pH 6.0–7.0. Poor drainage is the most common cause of failure']]},
+    {t:'💧 Daily Care',src:'rhs.org.uk',r:[
+      ['Sunlight','6–8 hrs direct sun daily'],
+      ['Watering','Minimal — water only during prolonged dry spells; overwatering causes rot']]},
+    {t:'✂️ Advanced Care',src:'rhs.org.uk',r:[
+      ['Scapes','Remove flower scapes to direct energy to the bulb'],
+      ['Days to Maturity','240–270 days from autumn planting; harvested Jun–Aug the following year'],
+      ['Harvest Cue','Lift when 1–2 leaves are still green. Dry in a warm, airy place for 2–3 weeks before storing']]},
+    {t:'🤝 Companions',src:'northernpolytunnels.co.uk/garlic',r:[
+      ['Plant with','Strawberries, Carrots, Beetroot, Lettuce, Roses (deters aphids and carrot fly)'],
+      ['Avoid','Beans, Peas (garlic inhibits legume growth)']]}]},
+
+  pea:{name:'Peas',sub:'Sugar Snap · Mangetout',cat:'pod',svg:'pea',sprout:6,water:1,harvest:55,secs:[
+    {t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/peas',r:[
+      ['Sowing Time','Mar–May outdoors; 5cm deep, 4–5cm apart around container edge'],
+      ['Sowing Temp','10–18°C'],
+      ['Pot Depth','30cm+ wide and deep; provide canes, netting or trellis for climbing'],
+      ['Soil','Well-draining, fertile compost. pH 6.0–7.0. Peas fix their own nitrogen so avoid over-rich soil — causes leafy growth over pods']]},
+    {t:'💧 Daily Care',src:'thrive.org.uk',r:[
+      ['Sunlight','Full sun to partial shade'],
+      ['Watering','Consistent and generous, especially when flowering and podding'],
+      ['Feeding','Not usually needed — peas fix their own nitrogen']]},
+    {t:'✂️ Advanced Care',src:'rhs.org.uk',r:[
+      ['Picking','Pick pods regularly — essential to keep plant producing'],
+      ['Support','Tie in tendrils as plant grows'],
+      ['Days to Maturity','55–70 days from sowing; mangetout and sugar snap varieties are ready when pods are plump but flat'],
+      ['Harvest Cue','Sugar snap: pods are plump and rounded. Mangetout: flat and bright green, before peas swell. Pick every 2–3 days']]},
+    {t:'🤝 Companions',src:'gardenuk.co.uk',r:[
+      ['Plant with','Carrots, Radish, Mint (deters aphids), Lettuce'],
+      ['Avoid','Garlic, Onions, Shallots (alliums inhibit pea growth)']]}]},
+
+  basil:{name:'Basil',sub:'Genovese · Sweet',cat:'herb',svg:'herb',sprout:5,water:1,harvest:30,secs:[
+    {t:'🌱 Planting Setup',src:'rhs.org.uk/herbs/basil',r:[
+      ['Sowing Time','Apr–Jun indoors; do not sow until frost risk has passed — very frost tender'],
+      ['Sowing Temp','18–22°C'],
+      ['Pot Size','15–20cm wide and deep'],
+      ['Soil','Light, well-draining, fertile compost. pH 6.0–7.0. Basil hates cold, wet soil — warm compost is essential'],
+      ['Position','Warm windowsill or sheltered south-facing spot']]},
+    {t:'💧 Daily Care',src:'rhs.org.uk',r:[
+      ['Sunlight','6+ hrs; warm south-facing position essential'],
+      ['Watering','Moist but never waterlogged; water at base, not leaves'],
+      ['Feeding','Balanced liquid feed every 2 weeks']]},
+    {t:'✂️ Advanced Care',src:'rhs.org.uk',r:[
+      ['Pinching','Pinch out flower buds immediately to extend leaf harvest'],
+      ['Days to Maturity','25–35 days to first harvest from sowing; continuous harvest for 3–4 months if flowers kept pinched'],
+      ['Harvest Cue','Pick stems of 3–4 pairs of leaves. Always harvest from the top — never strip a whole stem at once']]},
+    {t:'🤝 Companions',src:'gardenuk.co.uk',r:[
+      ['Plant with','Tomatoes (repels aphids & whitefly), Peppers'],
+      ['Avoid','Sage (inhibits basil growth)']]}]},
+
+  mint:{name:'Mint',sub:'Spearmint · Peppermint',cat:'herb',svg:'herb',sprout:7,water:1,harvest:28,secs:[
+    {t:'🌱 Planting Setup',src:'rhs.org.uk/herbs/mint',r:[
+      ['Sowing Time','Sow indoors Mar–May; plant out after last frost'],
+      ['Best method','Buy plug plants — mint seeds are slow and unreliable'],
+      ['Pot Size','20cm+ — MUST be grown in a container to prevent invasive spreading'],
+      ['Soil','Moist, fertile, well-draining compost. pH 6.0–7.0. Mint tolerates most soils but grows best with consistent moisture']]},
+    {t:'💧 Daily Care',src:'rhs.org.uk',r:[
+      ['Sunlight','Partial shade ideal — prevents wilting in heat'],
+      ['Watering','Keep moist; mint is thirsty'],
+      ['Feeding','Balanced liquid feed monthly']]},
+    {t:'✂️ Advanced Care',src:'rhs.org.uk',r:[
+      ['Containment','Always grow in its own pot — mint is invasive if planted in open ground'],
+      ['Days to Maturity','28–35 days to first harvest from planting; continuous harvest throughout summer'],
+      ['Harvest Cue','Cut stems when 10–15cm tall. Harvest before flowering for best flavour; cut back hard after flowering to rejuvenate']]},
+    {t:'🤝 Companions',src:'gardenuk.co.uk',r:[
+      ['Plant with','Tomatoes, Peas, Brassicas (strong scent deters pests)'],
+      ['Avoid','Parsley (competes for resources)']]}]},
+
+  rocket:{name:'Rocket',sub:'Wild · Salad Leaves',cat:'leafy',svg:'lettuce',sprout:4,water:1,harvest:25,secs:[
+    {t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/rocket',r:[
+      ['Sowing Time','Mar–Sep outdoors; succession sow every 2–3 weeks'],
+      ['Sowing Temp','10–18°C; avoid peak summer — bolts quickly in heat'],
+      ['Pot Depth','15cm minimum'],
+      ['Soil','Well-draining, moderately fertile compost. pH 6.0–7.0. Avoid over-rich soil — promotes lush but bland leaves with poor flavour'],
+      ['Spacing','Thin to 15cm apart or grow as cut-and-come-again']]},
+    {t:'💧 Daily Care',src:'rhs.org.uk',r:[
+      ['Sunlight','Partial shade in summer essential to delay bolting'],
+      ['Watering','Keep moist; drought causes rapid bolting and bitterness']]},
+    {t:'✂️ Advanced Care',src:'rhs.org.uk',r:[
+      ['Days to Maturity','20–30 days from sowing for baby leaves; 40 days for larger leaves'],
+      ['Harvest Cue','Cut leaves when 7–10cm long for best peppery flavour. Do not pull whole plant. Harvest in morning for crispest leaves']]},
+    {t:'🤝 Companions',src:'gardenuk.co.uk',r:[
+      ['Plant with','Lettuce, Radish, Carrots'],
+      ['Avoid','Brassicas (same pest family — cabbage white butterfly)']]}]},
+
+  'bok choy':{name:'Bok Choy',sub:'Pak Choi · Asian Green',cat:'brassica',svg:'kale',sprout:5,water:1,harvest:35,secs:[
+    {t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/oriental-greens',r:[
+      ['Sowing Time','Mar–Apr or Aug–Sep (avoids peak heat and bolting risk)'],
+      ['Sowing Temp','10–20°C'],
+      ['Pot Depth','20cm+'],
+      ['Soil','Moisture-retentive, fertile, well-draining compost. pH 6.0–7.0. Rich soil encourages the leafy growth this plant needs'],
+      ['Spacing','Thin to 15–20cm apart']]},
+    {t:'💧 Daily Care',src:'rhs.org.uk',r:[
+      ['Sunlight','Partial shade in summer; full sun in spring and autumn'],
+      ['Watering','Consistently moist — drought causes bolting'],
+      ['Feeding','Nitrogen-rich feed for leafy growth']]},
+    {t:'✂️ Advanced Care',src:'rhs.org.uk',r:[
+      ['Bolting','Avoid sowing Jun–Jul — heat causes rapid bolting'],
+      ['Days to Maturity','30–45 days from sowing; baby pak choi ready in 20–25 days'],
+      ['Harvest Cue','Cut at base when 15–20cm tall. Can also harvest outer leaves progressively. Best flavour before any flower stem appears']]},
+    {t:'🤝 Companions',src:'gardenuk.co.uk',r:[
+      ['Plant with','Celery, Dill, Mint'],
+      ['Avoid','Tomatoes, Strawberries (different growing conditions)']]}]},
+
+  fennel:{name:'Florence Fennel',sub:'Bulbing · Sweet Anise',cat:'root',svg:'generic',sprout:10,water:2,harvest:70,secs:[
+    {t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/florence-fennel',r:[
+      ['Sowing Time','May–Jul direct sow; avoid early sowing — cold triggers bolting'],
+      ['Sowing Temp','15–20°C'],
+      ['Pot Depth','30cm+ for bulb development'],
+      ['Soil','Light, well-draining, fertile compost. pH 6.0–7.0. Sandy or loamy soil is ideal; heavy clay causes poor bulb development'],
+      ['Note','Does not transplant well — direct sow into final container']]},
+    {t:'💧 Daily Care',src:'rhs.org.uk',r:[
+      ['Sunlight','Full sun, sheltered from wind'],
+      ['Watering','Regular and even — irregular watering causes bolting'],
+      ['Feeding','Balanced liquid feed monthly']]},
+    {t:'✂️ Advanced Care',src:'rhs.org.uk',r:[
+      ['Earthing up','Mound soil around bulb when golf-ball sized to blanch and sweeten'],
+      ['Days to Maturity','70–90 days from sowing; harvest before any flower stem develops'],
+      ['Harvest Cue','Bulb is 7–10cm across, white and firm. Cut just below bulb — fronds can be used as herb']]},
+    {t:'🤝 Companions',src:'gardenuk.co.uk',r:[
+      ['Plant with','Keep isolated — fennel is allelopathic to most plants'],
+      ['Avoid','Tomatoes, Peppers, Beans, most vegetables (allelopathic — grow in isolation)']]}]},
+
+  shiso:{name:'Shiso',sub:'Perilla · Red & Green',cat:'herb',svg:'herb',sprout:7,water:1,harvest:35,secs:[
+    {t:'🌱 Planting Setup',src:'gardenersworld.com',r:[
+      ['Sowing Time','Apr–May indoors; plant out after last frost (mid-May London)'],
+      ['Sowing Temp','18–22°C; seeds need light to germinate — do not cover'],
+      ['Pot Size','20cm+ wide and deep'],
+      ['Soil','Well-draining, moderately fertile compost. pH 5.5–6.5. Slightly acidic preferred; tolerates average soil but not waterlogged conditions']]},
+    {t:'💧 Daily Care',src:'gardenersworld.com',r:[
+      ['Sunlight','Full sun to partial shade; tolerates London summers well'],
+      ['Watering','Keep moist but well-drained; water at base'],
+      ['Feeding','Balanced liquid feed every 2–3 weeks']]},
+    {t:'✂️ Advanced Care',src:'gardenersworld.com',r:[
+      ['Pinching','Pinch out flower spikes to extend leafy harvest'],
+      ['Days to Maturity','35–50 days to first harvest from sowing; continuous harvest all summer'],
+      ['Harvest Cue','Pick young leaves when 5–8cm across — older leaves become tough and less flavourful. Self-seeds readily for next season']]},
+    {t:'🤝 Companions',src:'gardenuk.co.uk',r:[
+      ['Plant with','Tomatoes, Aubergines, Cucumbers'],
+      ['Avoid','Fennel (allelopathic to herbs)']]}]},
+
+  'spring onion':{name:'Spring Onion',sub:'Salad Onion · Scallion',cat:'bulb',svg:'onion',sprout:7,water:1,harvest:42,secs:[
+    {t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/spring-onions',r:[
+      ['Sowing Time','Mar–Aug outdoors; succession sow every 3 weeks'],
+      ['Sowing Temp','10–20°C'],
+      ['Pot Depth','15cm minimum'],
+      ['Soil','Well-draining, moderately fertile compost. pH 6.0–7.0. Avoid over-rich soil — causes excessive leaf growth over bulb'],
+      ['Spacing','Sow thinly in rows; thin to 1cm apart']]},
+    {t:'💧 Daily Care',src:'rhs.org.uk',r:[
+      ['Sunlight','Full sun to partial shade'],
+      ['Watering','Keep moist; consistent moisture'],
+      ['Feeding','Not usually needed']]},
+    {t:'✂️ Advanced Care',src:'rhs.org.uk',r:[
+      ['Days to Maturity','42–60 days from sowing; quick varieties like White Lisbon ready in 6 weeks'],
+      ['Harvest Cue','Pull when stems are pencil-thick and 15–20cm tall. Pull gently to avoid disturbing neighbours']]},
+    {t:'🤝 Companions',src:'gardenuk.co.uk',r:[
+      ['Plant with','Carrots (confuse carrot fly), Lettuce'],
+      ['Avoid','Beans, Peas (alliums inhibit legumes)']]}]},
+
+  chard:{name:'Swiss Chard',sub:'Rainbow · Silverbeet',cat:'leafy',svg:'spinach',sprout:7,water:1,harvest:35,secs:[
+    {t:'🌱 Planting Setup',src:'rhs.org.uk/vegetables/chard',r:[
+      ['Sowing Time','Apr–Jul outdoors; Apr for summer harvest, Jul for autumn/winter'],
+      ['Sowing Temp','10–18°C'],
+      ['Pot Depth','20cm+'],
+      ['Soil','Fertile, moisture-retentive, well-draining compost. pH 6.0–7.0. Tolerant of most soils; avoid waterlogging'],
+      ['Spacing','Thin to 30cm apart for full plants; 5cm for baby leaves']]},
+    {t:'💧 Daily Care',src:'rhs.org.uk',r:[
+      ['Sunlight','Full sun to partial shade; very adaptable'],
+      ['Watering','Keep moist; drought-tolerant once established'],
+      ['Feeding','Nitrogen-rich feed for lush leafy growth']]},
+    {t:'✂️ Advanced Care',src:'rhs.org.uk',r:[
+      ['Days to Maturity','35–60 days from sowing; baby leaves ready from 25 days'],
+      ['Harvest Cue','Cut outer leaves when 15–20cm tall. Leave at least 3 inner leaves on the plant to keep it producing. Frost hardy — one of the most resilient balcony crops']]},
+    {t:'🤝 Companions',src:'gardenuk.co.uk',r:[
+      ['Plant with','Beans, Brassicas, Lettuce'],
+      ['Avoid','Beets (same family — risk of shared disease)']]}]},
 };
 
 const ALIASES={
@@ -492,10 +1096,21 @@ function showTab(id){
 // ════════════════════════════════════════════════════════
 function buildCal(){
   const g=document.getElementById('cal-grid'); g.innerHTML='';
-  document.getElementById('cal-title').textContent=MONTHS[curM]+' '+curY;
+  const today=new Date();
+  // Populate selects if not yet built
+  const mSel=document.getElementById('cal-month-select');
+  const ySel=document.getElementById('cal-year-select');
+  if(mSel.options.length===0){
+    MONTHS.forEach((m,i)=>{const o=document.createElement('option');o.value=i;o.textContent=m;mSel.appendChild(o);});
+  }
+  if(ySel.options.length===0){
+    for(let y=2020;y<=2035;y++){const o=document.createElement('option');o.value=y;o.textContent=y;ySel.appendChild(o);}
+  }
+  // Sync selects to current view
+  mSel.value=curM;
+  ySel.value=curY;
   const fd=new Date(curY,curM,1).getDay();
   const days=new Date(curY,curM+1,0).getDate();
-  const today=new Date();
   for(let i=0;i<fd;i++){
     const e=document.createElement('div'); e.className='cc empty'; g.appendChild(e);
   }
@@ -523,6 +1138,12 @@ function buildCal(){
 function changeMonth(dir){
   curM+=dir;
   if(curM<0){curM=11;curY--;} if(curM>11){curM=0;curY++;}
+  buildCal();
+}
+
+function jumpToDate(){
+  curM=parseInt(document.getElementById('cal-month-select').value);
+  curY=parseInt(document.getElementById('cal-year-select').value);
   buildCal();
 }
 
@@ -642,7 +1263,8 @@ function buildTaskCards(){
       urgencyColor='var(--green)';
       badgeContent='✓';
     } else if(t.isOverdue){
-      urgencyLabel='Overdue';
+      const overdueDays=Math.abs(t.daysLeft);
+      urgencyLabel=`Overdue ${overdueDays}d`;
       urgencyColor='var(--red)';
       badgeContent='!';
     } else if(t.daysLeft<=0){
@@ -776,10 +1398,44 @@ function openSowModal(d,m,y){
   document.getElementById('modal-no-results').classList.remove('vis');
   document.getElementById('modal-add-btn').classList.remove('vis');
   document.getElementById('modal-added-msg').innerHTML='';
+  // Show existing sowings on this date
+  refreshExistingSowings(d,m,y);
   buildPickerGrid('');
   document.getElementById('modal-bg').classList.add('vis');
   document.body.style.overflow='hidden';
   setTimeout(()=>si.focus(),120);
+}
+
+function refreshExistingSowings(d,m,y){
+  const existing=sowings.filter(s=>s.d===d&&s.m===m&&s.y===y);
+  const wrap=document.getElementById('modal-existing');
+  const list=document.getElementById('modal-existing-list');
+  if(!existing.length){ wrap.style.display='none'; return; }
+  wrap.style.display='block';
+  list.innerHTML='';
+  existing.forEach((s,i)=>{
+    const pd=KNOWN[s.plant]; if(!pd) return;
+    // find real index in sowings array
+    const realIdx=sowings.indexOf(s);
+    const row=document.createElement('div');
+    row.style.cssText='display:flex;align-items:center;gap:10px;padding:9px 12px;border:2px solid var(--black);margin-bottom:6px;background:var(--white)';
+    row.innerHTML=`
+      <div style="width:32px;height:32px;flex-shrink:0">${pSVG(pd.svg,32)}</div>
+      <div style="flex:1">
+        <div style="font-size:11px;font-weight:900;letter-spacing:0.06em;text-transform:uppercase">${pd.name}</div>
+        <div style="font-size:9px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.06em">${pd.sub}</div>
+      </div>
+      <button onclick="deleteSowing(${realIdx})" style="background:var(--red);color:white;border:none;padding:6px 12px;font-family:'Inter',sans-serif;font-size:9px;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer">✕ Remove</button>`;
+    list.appendChild(row);
+  });
+}
+
+function deleteSowing(idx){
+  sowings.splice(idx,1);
+  autoSave();
+  buildCal();
+  buildMilestones();
+  if(pendingDate) refreshExistingSowings(pendingDate.d,pendingDate.m,pendingDate.y);
 }
 
 function buildPickerGrid(filter){
@@ -863,11 +1519,6 @@ function modalAddNew(){
   document.getElementById('modal-search').value='';
   document.getElementById('modal-no-results').classList.remove('vis');
   document.getElementById('modal-add-btn').classList.remove('vis');
-}
-function confirmSow(){
-  if(!pendingPlant||!pendingDate)return;
-  sowings.push({...pendingDate,plant:pendingPlant});
-  closeModal(); buildCal(); buildMilestones();
 }
 function closeModal(){
   document.getElementById('modal-bg').classList.remove('vis');
@@ -1065,11 +1716,176 @@ function goToPlant(key){
 document.getElementById('enc-input').addEventListener('keydown',e=>{if(e.key==='Enter')tryAdd();});
 
 // ════════════════════════════════════════════════════════
+//  AUTH SYSTEM
+// ════════════════════════════════════════════════════════
+let authState={
+  mode: 'guest',       // 'guest' | 'authed'
+  email: '',
+  uid: '',
+  guestId: '',         // unique ID per guest session
+  simulatedOTP: '',
+};
+
+// ── Guest session helpers ──────────────────────────────
+function newGuestId(){
+  return 'guest_'+Date.now()+'_'+Math.random().toString(36).slice(2,8);
+}
+function saveGuestData(){
+  if(authState.mode!=='guest'||!authState.guestId) return;
+  try{
+    localStorage.setItem('bh_data_'+authState.guestId, JSON.stringify({sowings,completedTimestamps}));
+  }catch(e){}
+}
+function clearMemory(){
+  sowings=[];
+  Object.keys(completedTimestamps).forEach(k=>delete completedTimestamps[k]);
+}
+
+// ── Show / hide auth screens ──────────────────────────
+function showAuthLanding(){
+  document.getElementById('auth-wrap').classList.remove('hidden');
+  document.getElementById('auth-landing').style.display='flex';
+  document.getElementById('auth-success').style.display='none';
+}
+
+function showAuthForm(provider){
+  closeSoftWall(false);
+  authState.email=provider==='google'?'user@gmail.com':'user@icloud.com';
+  finishSignIn(!!localStorage.getItem('bh_data_'+authState.email));
+}
+
+function hideAllAuthScreens(){
+  ['auth-landing','auth-success'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.style.display='none';
+  });
+}
+
+function finishSignIn(isReturning){
+  authState.mode='authed';
+  authState.uid='uid_'+Math.random().toString(36).slice(2,10);
+  // Clear memory first, then load this account's data
+  sowings=[];
+  Object.keys(completedTimestamps).forEach(k=>delete completedTimestamps[k]);
+  try{
+    const saved=localStorage.getItem('bh_data_'+authState.email);
+    if(saved){
+      const d=JSON.parse(saved);
+      if(d.sowings) sowings=d.sowings;
+      if(d.completedTimestamps) Object.assign(completedTimestamps,d.completedTimestamps);
+    }
+  }catch(e){}
+  buildCal();
+  buildMilestones();
+  document.getElementById('auth-landing').style.display='none';
+  document.getElementById('auth-success').style.display='flex';
+  document.getElementById('auth-success-sub').textContent=
+    isReturning
+      ? 'Welcome back! Your garden has been restored — all your plants, progress and tasks are ready.'
+      : 'Account created! Your garden is now saved and will sync across your devices.';
+  document.getElementById('auth-success-uid').textContent=`Account · ${authState.email}`;
+}
+
+function completeAuth(){
+  document.getElementById('auth-wrap').classList.add('hidden');
+  updateHeroUserArea();
+}
+
+function enterGuestMode(){
+  // Always generate a brand-new guest ID — each guest session is fully isolated
+  clearMemory();
+  authState.mode='guest';
+  authState.email='';
+  authState.uid='';
+  authState.guestId=newGuestId();
+  buildCal();
+  buildMilestones();
+  document.getElementById('auth-wrap').classList.add('hidden');
+  updateHeroUserArea();
+}
+
+function updateHeroUserArea(){
+  const area=document.getElementById('hero-user-area');
+  if(authState.mode==='authed'){
+    area.innerHTML=`
+      <div class="hero-user-pill" onclick="showSignOutModal()" style="cursor:pointer" title="Click to sign out">
+        <div class="hero-user-pill-dot"></div>
+        <span class="hero-user-pill-txt">✓ Synced · ${authState.email}</span>
+        <span style="font-size:9px;color:rgba(255,255,255,0.5);margin-left:6px">Sign out</span>
+      </div>`;
+  } else {
+    area.innerHTML=`<div class="hero-user-pill-sign" onclick="showAuthLanding()">Sign in to save your garden →</div>`;
+  }
+}
+
+function showSignOutModal(){
+  document.getElementById('signout-email').textContent=authState.email;
+  document.getElementById('signout-modal').style.display='flex';
+}
+function cancelSignOut(){
+  document.getElementById('signout-modal').style.display='none';
+}
+function confirmSignOut(){
+  document.getElementById('signout-modal').style.display='none';
+  // Save account data before signing out
+  try{
+    localStorage.setItem('bh_data_'+authState.email, JSON.stringify({sowings,completedTimestamps}));
+  }catch(e){}
+  // Clear memory and assign a fresh guest ID — the next person is a new guest
+  clearMemory();
+  authState.mode='guest';
+  authState.email='';
+  authState.uid='';
+  authState.guestId=newGuestId();
+  buildCal();
+  buildMilestones();
+  updateHeroUserArea();
+  showAuthLanding();
+}
+
+// ── SOFT WALL ─────────────────────────────────────────
+function showSoftWall(){
+  document.getElementById('soft-wall-bg').classList.add('vis');
+}
+function closeSoftWall(goToAuth){
+  document.getElementById('soft-wall-bg').classList.remove('vis');
+  if(goToAuth){
+    document.getElementById('auth-wrap').classList.remove('hidden');
+    showAuthLanding();
+  }
+}
+
+// ── Override confirmSow to add soft wall on 2nd plant ──
+function autoSave(){
+  if(authState.mode==='authed'&&authState.email){
+    try{ localStorage.setItem('bh_data_'+authState.email,JSON.stringify({sowings,completedTimestamps})); }catch(e){}
+  } else if(authState.mode==='guest'&&authState.guestId){
+    saveGuestData();
+  }
+}
+
+function confirmSow(){
+  if(!pendingPlant||!pendingDate)return;
+  sowings.push({...pendingDate,plant:pendingPlant});
+  closeModal();buildCal();buildMilestones();
+  autoSave();
+  // Soft wall: guest mode, just added 2nd+ plant
+  if(authState.mode==='guest'&&sowings.length>1){
+    setTimeout(showSoftWall,400);
+  }
+}
+
+// ════════════════════════════════════════════════════════
 //  INIT
 // ════════════════════════════════════════════════════════
 buildFilterStrip();
 buildAllEnc();
 buildCal();
+// Assign a fresh guest ID on every page load — each visitor starts isolated
+authState.guestId=newGuestId();
+// Show auth on first load
+showAuthLanding();
+updateHeroUserArea();
 </script>
 </body>
 </html>
